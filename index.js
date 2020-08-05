@@ -57,4 +57,11 @@ client.on('message', message => {
 	}
 });
 
+client.on('guildMemberAdd', member => {
+	client.channels.cache.get('740632604071690281').send(`<@${member.id}> joined the server. \`${member.guild.memberCount}\``);
+});
+client.on('guildMemberRemove', member => {
+	client.channels.cache.get('740632604071690281').send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``);
+});
+
 client.login(token);
