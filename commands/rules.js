@@ -1,19 +1,19 @@
-const { footers } = require('../config.json');
+//const { footers } = require('../config.json');
 const { prefix } = require('../config.json');
 
 
 module.exports = {
-    name: 'faq',
-    description: 'get answers to common questions to avoid typing. `faq list` for more',
-    usage: `${prefix}faq [keyword]`,
+    name: 'rules',
+    description: 'refer to a particular rule',
+    usage: `${prefix}rules [keyword]`,
     type: "peasant",
     cooldown: 5,
 	execute(message, args) {
         faqtitle = "";
         faqanswer = "";
         if (!args.length) {
-            faqtitle = "FAQs"
-            faqanswer = "You need to include which answer you want, silly. `faq list` for a list."
+            faqtitle = "Rules"
+            faqanswer = "For a list of all the rules, see <#738130312361672726>."
         }
         switch (args[0]) {
             case "list":
@@ -41,7 +41,7 @@ module.exports = {
             "description": faqanswer,
             "color": 16087843,
             "footer": {
-              "text": footers[Math.floor(Math.random()*footers.length)]
+              //"text": footers[Math.floor(Math.random()*footers.length)]
             }
         };
         message.channel.bulkDelete(1);
