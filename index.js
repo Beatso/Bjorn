@@ -18,17 +18,13 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Ready!');
-	client.user.setActivity('@Pjotso for help', { type: 'WATCHING' });
+	//client.user.setActivity('@Pjotso for help', { type: 'WATCHING' });
 	
 
 });
 
 
 client.on('message', message => {
-	if (message.content.includes("<@!678668611568795851>") && !message.content.startsWith(prefix)) {
-		client.commands.get("help").execute(message, []);
-		return;
-	}
 	if (!message.content.startsWith(prefix)) return;
 
 	const args = message.content.slice(prefix.length).split(/ +/);
