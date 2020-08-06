@@ -2,10 +2,7 @@ const { prefix } = require('../config.json');
 
 module.exports = {
     name: 'reactionrole',
-    description: 'check if the bot is online',
-    usage: `${prefix}ping`,
-    type: "peasant",
-    cooldown: 15,
+    cooldown: 0,
 	execute(message, args) {
         const embed = {
             "title": "Get Notification Roles",

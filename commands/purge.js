@@ -3,8 +3,6 @@ const { prefix } = require('../config.json');
 
 module.exports = {
     name: 'purge',
-    description: 'deletes spam and displays info',
-    usage: `${prefix}spam [messages to delete] [seconds]`,
     cooldown: 0,
     type: "admin",
 	execute(message, args) {

@@ -4,9 +4,6 @@ const { prefix } = require('../config.json');
 
 module.exports = {
     name: 'rules',
-    description: 'refer to a particular rule',
-    usage: `${prefix}rules [keyword]`,
-    type: "peasant",
     cooldown: 5,
 	execute(message, args) {
         faqtitle = "";
