@@ -2,7 +2,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 
-const client = new Discord.Client();
+const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]});
 client.commands = new Discord.Collection();
 
 module.exports.client = client;
@@ -22,7 +22,6 @@ client.once('ready', () => {
 	
 
 });
-
 
 client.on('message', message => {
 	if (!message.content.startsWith(prefix)) return;
@@ -63,5 +62,38 @@ client.on('guildMemberAdd', member => {
 client.on('guildMemberRemove', member => {
 	client.channels.cache.get('740632604071690281').send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``);
 });
+
+
+client.on("messageReactionAdd", async (reaction, user) => {
+	if (reaction.message.partial) await reaction.message.fetch();
+	if (reaction.partial) await reaction.fetch();
+
+	if  (!reaction.message.guild) return;
+
+	if (reaction.message.channel.id == "740838518116319322") {
+		if (reaction.emoji.name == "🟢") { await reaction.message.guild.members.cache.get(user.id).roles.add("740902139416674345") }
+		else if (reaction.emoji.name == "🔴") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955501595983872") }
+		else if (reaction.emoji.name == "🔵") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955615567937596") }
+		else if (reaction.emoji.name == "🟠") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955812481990717") }
+		else if (reaction.emoji.name == "⚪") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955847517274113") }
+		else if (reaction.emoji.name == "🟣") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955885115015208") }
+	}
+})
+
+client.on("messageReactionRemove", async (reaction, user) => {
+	if (reaction.message.partial) await reaction.message.fetch();
+	if (reaction.partial) await reaction.fetch();
+
+	if  (!reaction.message.guild) return;
+
+	if (reaction.message.channel.id == "740838518116319322") {
+		if (reaction.emoji.name == "🟢") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740902139416674345") }
+		else if (reaction.emoji.name == "🔴") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955501595983872") }
+		else if (reaction.emoji.name == "🔵") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955615567937596") }
+		else if (reaction.emoji.name == "🟠") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955812481990717") }
+		else if (reaction.emoji.name == "⚪") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955847517274113") }
+		else if (reaction.emoji.name == "🟣") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955885115015208") }
+	}
+})
 
 client.login(token);
