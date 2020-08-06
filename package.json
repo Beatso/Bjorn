@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node index.js"
+    "start": "node index.js"
   },
   "author": "Beatso",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^12.2.0",
-    "request": "^2.81.0",
-	"mcping-js": "^1.5.0"
+    "mcping-js": "^1.5.0",
+    "request": "^2.81.0"
   }
 }
