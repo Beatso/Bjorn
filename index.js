@@ -2,6 +2,9 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 
+const ReactionRole = require("reaction-role");
+const system = new ReactionRole(token);
+
 const client = new Discord.Client();
 client.commands = new Discord.Collection();
 
@@ -63,5 +66,11 @@ client.on('guildMemberAdd', member => {
 client.on('guildMemberRemove', member => {
 	client.channels.cache.get('740632604071690281').send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``);
 });
+
+let option1 = system.createOption("✅", "740902139416674345");
+let option2 = system.createOption("🥔", "740902139416674345");
+let option3 = system.createOption("🦛", "740902139416674345");
+system.createMessage("740848575868829756", "740838518116319322", 10, null, option1, option2, option3);
+system.init();
 
 client.login(token);
