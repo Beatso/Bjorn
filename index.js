@@ -18,7 +18,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('Ready!');
-	client.user.setActivity('cards');
+	client.user.setActivity('nothing, I am a bot :(');
 	
 
 });
