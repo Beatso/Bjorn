@@ -17,7 +17,7 @@ module.exports = {
                 messagesToDelete++;
                 message.channel.bulkDelete(messagesToDelete);
 
-                message.channel.send(`🚫 Deleted ${messagesToDelete} messages.`).then (message => {
+                message.channel.send(`🚫 Deleted ${messagesToDelete-1} messages.`).then (message => {
                     message.delete({ timeout: 3000 });
                 });                                  
             })
