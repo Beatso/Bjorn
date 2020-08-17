@@ -1,7 +1,7 @@
 {
-  "name": "pjotso",
+  "name": "Bjorn",
   "version": "1.0.0",
-  "description": "Custom bot for Technocraft",
+  "description": "Custom bot for my discord server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
