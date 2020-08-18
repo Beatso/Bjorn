@@ -7,10 +7,10 @@ module.exports = {
             message.channel.send("You didn't mention a role!")
             return
         }
-        if ( args[0] = "add" ) {
-            pass
-        } else if ( args[0] = "remove" ) {
-            pass
+        if ( args[0] == "add" ) {
+            return
+        } else if ( args[0] == "remove" ) {
+            return
         } else {
             message.channel.send("Expected `add` or `remove`. Received `"+args[0]+"`")
         }
