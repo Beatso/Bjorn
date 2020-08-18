@@ -4,7 +4,7 @@ module.exports = {
 	execute(message, args) {
 
         // check if the user is a moderator. if not, exit.
-        if (!(member.roles.cache.some(role => role.name === 'Moderator'))) {
+        if (!(message.member.roles.cache.some(role => role.name === 'Moderator'))) {
             message.channel.send("Insufficient permissions.")
             return
         }
