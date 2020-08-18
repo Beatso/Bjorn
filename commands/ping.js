@@ -1,5 +1,3 @@
-const { prefix } = require('../config.json');
-
 module.exports = {
     name: 'ping',
     cooldown: 15,

@@ -1,6 +1,3 @@
-const { prefix } = require('../config.json');
-
-
 module.exports = {
     name: 'purge',
     cooldown: 0,
