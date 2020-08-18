@@ -19,7 +19,7 @@ for (const file of commandFiles) {
 }
 
 client.once('ready', () => {
-	console.log('Ready!');
+	console.log('bot running');
 	client.user.setActivity('nothing, I am a bot :(');
 	
 
