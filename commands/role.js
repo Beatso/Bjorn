@@ -2,11 +2,10 @@ module.exports = {
     name: 'role',
     cooldown: 0,
 	execute(message, args) {
-        if (message.mentions.roles.length==0) {
+        const role = message.mentions.roles.first()
+        if ( role==undefined ) {
             message.channel.send("You didn't mention a role!")
-        } else {
-            const role = message.mentions.roles.first()
-            message.channel.send(role)
+            return
         }
     },
 };
