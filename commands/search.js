@@ -1,11 +1,11 @@
-const { prefix, color } = require('./config.json');
+const { prefix, color } = require('../config.json');
 
 module.exports = {
     name: 'search',
     cooldown: 5,
 	execute(message, args) {
         var embed
-        if (args.length==0) { embed = {
+        if (args.length!=0) { embed = {
             "title": "Search Web",
             "description": `[Search Ecosia for \`${args.join(" ")}\`](https://www.ecosia.org/search?q=${args.join("+")})`,
             "color": color,
