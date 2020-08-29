@@ -5,7 +5,7 @@ module.exports = {
         const embed = {
             "title": "Get Notification Roles",
             "description": "React to this message with the relevant emojis to be notified for updates to certain packs. If <@740671610490716200> is offline, please click [here](https://bjorn.beatso1.repl.co/) to wake him up.",
-            "color": 16087843,
+            "color": color,
             "fields": [
               {
                 "name": ":green_circle:",
