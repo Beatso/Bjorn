@@ -4,7 +4,7 @@ module.exports = {
 	execute(message, args) {
         const embed = {
             "title": "Get Notification Roles",
-            "description": "React to this message with the relevant emojis to be notified for updates to certain packs:",
+            "description": "React to this message with the relevant emojis to be notified for updates to certain packs. If <@740671610490716200> is offline, please click [here](https://bjorn.beatso1.repl.co/) to wake him up.",
             "color": 16087843,
             "fields": [
               {
@@ -14,7 +14,7 @@ module.exports = {
               },
               {
                 "name": ":red_circle:",
-                "value": "[Better Redstone Components](https://www.planetminecraft.com/texture-pack/better-redstone-components/)",
+                "value": "[Little Improvements: Redstone](https://www.planetminecraft.com/texture-pack/little-improvements-redstone/)",
                 "inline": true
               },
               {
