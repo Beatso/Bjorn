@@ -79,6 +79,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 		else if (reaction.emoji.name == "🟠") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955812481990717") }
 		else if (reaction.emoji.name == "⚪") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955847517274113") }
 		else if (reaction.emoji.name == "🟣") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955885115015208") }
+		else if (reaction.emoji.name == "🟤") { await reaction.message.guild.members.cache.get(user.id).roles.add("750442200302747669") }
 	}
 })
 
@@ -95,6 +96,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
 		else if (reaction.emoji.name == "🟠") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955812481990717") }
 		else if (reaction.emoji.name == "⚪") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955847517274113") }
 		else if (reaction.emoji.name == "🟣") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955885115015208") }
+		else if (reaction.emoji.name == "🟤") { await reaction.message.guild.members.cache.get(user.id).roles.remove("750442200302747669") }
 	}
 })
 

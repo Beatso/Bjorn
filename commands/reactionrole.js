@@ -36,6 +36,11 @@ module.exports = {
 					"name": ":purple_circle:",
 					"value": "[Crafting Datapacks](https://www.planetminecraft.com/collection/69976/beatso-s-qol-crafting-packs/)",
 					"inline": true
+				},
+				{
+					"name": ":brown_circle:",
+					"value": "[Simple Auto Clicker](https://www.planetminecraft.com/mod/simple-auto-clicker/)",
+					"inline": true
 				}
 			]
 		}
@@ -48,12 +53,14 @@ module.exports = {
             reactionMessage.react("🟣");
         })*/
 		const getRolesChannel = message.guild.channels.cache.get("740838518116319322")
-		console.log(getRolesChannel)
 		getRolesChannel.messages.fetch("741544749235830796")
 			.then(msg => {
 				// console.log(msg)
 				msg.edit({ embed })
-					.then(msg1 => console.log(`Updated the content of a message to ${msg1.content}`))
+					.then((msg1) => {
+						console.log(`Updated the content of a message to ${msg1.content}`)
+						msg.react("🟤")
+					})
 					.catch(console.error);
 			});
 	},
