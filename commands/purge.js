@@ -3,23 +3,8 @@ module.exports = {
     cooldown: 0,
     type: "admin",
 	execute(message, args) {
-        if (message.member.roles.cache.some(role => role.id == '739379990415540267')) {
-
-            message.channel.messages.fetch({ limit: 1 }).then(messages => {
-                
-                let messagesToDelete = args[0]
-                if (messagesToDelete == undefined) { messagesToDelete=0; } 
-                messagesToDelete++;
-                message.channel.bulkDelete(messagesToDelete);
-
-                message.channel.send(`🚫 Deleted ${messagesToDelete-1} messages.`).then (message => {
-                    message.delete({ timeout: 3000 });
-                });                                  
-            })
-    
-        } else {
-            message.channel.bulkDelete(1);
-            message.author.send("Stupid, don't try and use admin commands.");
-        }
-	},
+		if (!message.member.roles.cache.some(role => role.id == "739379990415540267")) message.delete().then(message.channel.send("This command is only available to moderators.").then(message=>message.delete({timeout:messageTimeout}))).catch((error)=>console.error(error))
+		else if (args[0]==undefined) message.delete().then(message.channel.send("You need to specify how many messages you want to delete.").then(message=>message.delete({timeout:messageTimeout}))).catch((error)=>console.error(error))
+		else message.channel.bulkDelete(Number(args[0])+1).then(message.channel.send(`🚫 Deleted ${args[0]} messages.`).then(message=>message.delete({timeout:messageTimeout}))).catch((error)=>console.error(error))
+	}
 };
