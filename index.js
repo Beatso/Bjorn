@@ -76,10 +76,10 @@ client.on("messageReactionAdd", async (reaction, user) => {
 	if (reaction.message.channel.id == "740838518116319322") {
 		if (reaction.emoji.name == "🟢") { await reaction.message.guild.members.cache.get(user.id).roles.add("740902139416674345") }
 		else if (reaction.emoji.name == "🔴") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955501595983872") }
-		else if (reaction.emoji.name == "🔵") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955615567937596") }
+		else if (reaction.emoji.name == "🔵") { await reaction.message.guild.members.cache.get(user.id).roles.add("752975214140194817") }
 		else if (reaction.emoji.name == "🟠") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955812481990717") }
 		else if (reaction.emoji.name == "⚪") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955847517274113") }
-		else if (reaction.emoji.name == "🟣") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955885115015208") }
+		else if (reaction.emoji.name == "🟣") { await reaction.message.guild.members.cache.get(user.id).roles.add("752975147815665675") }
 		else if (reaction.emoji.name == "🟤") { await reaction.message.guild.members.cache.get(user.id).roles.add("750442200302747669") }
 	}
 })
@@ -93,10 +93,10 @@ client.on("messageReactionRemove", async (reaction, user) => {
 	if (reaction.message.channel.id == "740838518116319322") {
 		if (reaction.emoji.name == "🟢") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740902139416674345") }
 		else if (reaction.emoji.name == "🔴") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955501595983872") }
-		else if (reaction.emoji.name == "🔵") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955615567937596") }
+		else if (reaction.emoji.name == "🔵") { await reaction.message.guild.members.cache.get(user.id).roles.remove("752975214140194817") }
 		else if (reaction.emoji.name == "🟠") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955812481990717") }
 		else if (reaction.emoji.name == "⚪") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955847517274113") }
-		else if (reaction.emoji.name == "🟣") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955885115015208") }
+		else if (reaction.emoji.name == "🟣") { await reaction.message.guild.members.cache.get(user.id).roles.remove("752975147815665675") }
 		else if (reaction.emoji.name == "🟤") { await reaction.message.guild.members.cache.get(user.id).roles.remove("750442200302747669") }
 	}
 })

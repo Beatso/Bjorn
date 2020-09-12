@@ -19,7 +19,7 @@ module.exports = {
 				},
 				{
 					"name": ":blue_circle:",
-					"value": "[Connected Texture Packs](https://www.planetminecraft.com/texture-pack/connected-smooth-stone-no-optifine/)",
+					"value": "[Little Improvements: Custom](https://www.littleimprovements-custom.tk/)",
 					"inline": true
 				},
 				{
@@ -34,7 +34,7 @@ module.exports = {
 				},
 				{
 					"name": ":purple_circle:",
-					"value": "[Crafting Datapacks](https://www.planetminecraft.com/collection/69976/beatso-s-qol-crafting-packs/)",
+					"value": "[Roundup](https://discord.com/channels/738126248194211960/747855771454144653)",
 					"inline": true
 				},
 				{
