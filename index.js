@@ -1,6 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix } = require('./config.json');
+const { prefix,communityCreationsChannelID } = require('./config.json');
 require("dotenv").config();
 const keepAlive = require('./server');
 
@@ -58,6 +58,15 @@ client.on('message', message => {
 		message.reply('there was an error trying to execute that command!');
 	}
 });
+
+client.on("message", message => {
+	if (message.channel.id!=communityCreationsChannelID) return
+	if (
+		message.attachments.array().length==0 && // there is not an attachment
+		!message.content.includes("http://") && // there not is a link
+		!message.content.includes("https://") //there is not a link
+	) message.delete()
+})
 
 client.on('guildMemberAdd', member => {
 	client.channels.cache.get('740632604071690281').send(`<@${member.id}> joined the server. \`${member.guild.memberCount}\``);
