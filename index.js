@@ -1,6 +1,6 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { prefix,communityCreationsChannelID,creationsDiscussionChannelID } = require('./config.json')
+const { prefix,channelIDs} = require('./config.json')
 require("dotenv").config()
 const keepAlive = require('./server')
 
@@ -22,7 +22,7 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
-	if (message.channel.type=="news") client.channels.cache.get("749377732009525312").send(`<@${message.author.id}>, don't forget to publish your message!`)
+	if (message.channel.type=="news") client.channels.cache.get(channelIDs.botSpam).send(`<@${message.author.id}>, don't forget to publish your message!`)
 	if (!message.content.startsWith(prefix)) return
 
 	const args = message.content.slice(prefix.length).split(/ +/)
@@ -56,23 +56,23 @@ client.on('message', message => {
 });
 
 client.on("message", message => {
-	if (message.channel.id!=communityCreationsChannelID||message.author.id==client.user.id) return
+	if (message.channel.id!=channelIDs.communityCreations||message.author.id==client.user.id) return
 	if (
 		message.attachments.array().length==0 && // there is not an attachment
 		!message.content.includes("http://") && // there not is a link
 		!message.content.includes("https://") //there is not a link
 	) {
 		message.delete()
-		message.reply(`your message was deleted because it didn't have an attachment, image or link. Please use <#${creationsDiscussionChannelID}> for talking about creations posted in this channel.`).then(response=>response.delete({timeout:15000}))
+		message.reply(`your message was deleted because it didn't have an attachment, image or link. Please use <#${channelIDs.creationsDiscussion}> for talking about creations posted in this channel.`).then(response=>response.delete({timeout:15000}))
 		creationsWebhook.send(message.content,{username:message.author.username,avatarURL:message.author.avatarURL({dynamic:true})})
 	}
 })
 
 client.on('guildMemberAdd', member => {
-	client.channels.cache.get('740632604071690281').send(`<@${member.id}> joined the server. \`${member.guild.memberCount}\``);
+	client.channels.cache.get(channelIDs.joinLeave).send(`<@${member.id}> joined the server. \`${member.guild.memberCount}\``);
 });
 client.on('guildMemberRemove', member => {
-	client.channels.cache.get('740632604071690281').send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``);
+	client.channels.cache.get(channelIDs.joinLeave).send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``);
 });
 
 
@@ -82,7 +82,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 
 	if  (!reaction.message.guild) return;
 
-	if (reaction.message.channel.id == "740838518116319322") {
+	if (reaction.message.channel.id == channelIDs.getRoles) {
 		if (reaction.emoji.name == "🟢") { await reaction.message.guild.members.cache.get(user.id).roles.add("740902139416674345") }
 		else if (reaction.emoji.name == "🔴") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955501595983872") }
 		else if (reaction.emoji.name == "🔵") { await reaction.message.guild.members.cache.get(user.id).roles.add("752975214140194817") }
@@ -99,7 +99,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
 
 	if  (!reaction.message.guild) return;
 
-	if (reaction.message.channel.id == "740838518116319322") {
+	if (reaction.message.channel.id == channelIDs.getRoles) {
 		if (reaction.emoji.name == "🟢") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740902139416674345") }
 		else if (reaction.emoji.name == "🔴") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740955501595983872") }
 		else if (reaction.emoji.name == "🔵") { await reaction.message.guild.members.cache.get(user.id).roles.remove("752975214140194817") }

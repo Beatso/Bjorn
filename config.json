@@ -1,6 +1,11 @@
 {
 	"prefix": ".",
 	"color": 16087843,
-	"communityCreationsChannelID": 756241870404976741,
-	"creationsDiscussionChannelID": 756241898439704618
+	"channelIDs": {
+		"communityCreations": 756241870404976741,
+		"creationsDiscussion": 756241898439704618,
+		"botSpam": 749377732009525312,
+		"joinLeave": 740632604071690281,
+		"getRoles": 740838518116319322
+	}
 }
