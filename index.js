@@ -63,7 +63,7 @@ client.on("message", message => {
 		!message.content.includes("https://") //there is not a link
 	) {
 		message.delete()
-		message.reply(`your message was deleted because it didn't have an attachment, image or link. Please use <#${channelIDs.creationsDiscussion}> for talking about creations posted in this channel.`).then(response=>response.delete({timeout:15000}))
+		message.reply("your message was deleted because it didn't have an attachment, image or link. Please use <#756241898439704618> for talking about creations posted in this channel.").then(response=>response.delete({timeout:15000}))
 		creationsWebhook.send(message.content,{username:message.author.username,avatarURL:message.author.avatarURL({dynamic:true})})
 	}
 })
