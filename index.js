@@ -1,42 +1,38 @@
-const fs = require('fs');
-const Discord = require('discord.js');
-const { prefix,communityCreationsChannelID } = require('./config.json');
-require("dotenv").config();
-const keepAlive = require('./server');
+const fs = require('fs')
+const Discord = require('discord.js')
+const { prefix,communityCreationsChannelID,creationsDiscussionChannelID } = require('./config.json')
+require("dotenv").config()
+const keepAlive = require('./server')
 
-const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]});
-client.commands = new Discord.Collection();
-
+const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
+client.commands = new Discord.Collection()
 module.exports.client = client;
+const creationsWebhook = new Discord.WebhookClient(process.env.creationswebhookid,process.env.creationswebhooktoken)
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-
-const cooldowns = new Discord.Collection();
-
+const cooldowns = new Discord.Collection()
 for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
+	const command = require(`./commands/${file}`)
+	client.commands.set(command.name, command)
 }
 
 client.once('ready', () => {
-	console.log('bot running');
-	client.user.setActivity('nothing, I am a bot :(');
-	
-
+	console.log('bot running')
+	client.user.setActivity('nothing, I am a bot :(')
 });
 
 client.on('message', message => {
 	if (message.channel.type=="news") client.channels.cache.get("749377732009525312").send(`<@${message.author.id}>, don't forget to publish your message!`)
-	if (!message.content.startsWith(prefix)) return;
+	if (!message.content.startsWith(prefix)) return
 
-	const args = message.content.slice(prefix.length).split(/ +/);
-	const command = args.shift().toLowerCase();
+	const args = message.content.slice(prefix.length).split(/ +/)
+	const command = args.shift().toLowerCase()
 	
-	if (!client.commands.has(command)) return;
+	if (!client.commands.has(command)) return
 
 	// cooldown stuff
 	if (!cooldowns.has(command.name)) {
-		cooldowns.set(command.name, new Discord.Collection());
+		cooldowns.set(command.name, new Discord.Collection())
 	}
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
@@ -60,12 +56,16 @@ client.on('message', message => {
 });
 
 client.on("message", message => {
-	if (message.channel.id!=communityCreationsChannelID) return
+	if (message.channel.id!=communityCreationsChannelID||message.author.id==client.user.id) return
 	if (
 		message.attachments.array().length==0 && // there is not an attachment
 		!message.content.includes("http://") && // there not is a link
 		!message.content.includes("https://") //there is not a link
-	) message.delete()
+	) {
+		message.delete()
+		message.reply(`your message was deleted because it didn't have an attachment, image or link. Please use <#${creationsDiscussionChannelID}> for talking about creations posted in this channel.`).then(response=>response.delete({timeout:15000}))
+		creationsWebhook.send(message.content,{username:message.author.username,avatarURL:message.author.avatarURL({dynamic:true})})
+	}
 })
 
 client.on('guildMemberAdd', member => {
