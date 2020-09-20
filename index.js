@@ -22,7 +22,6 @@ client.once('ready', () => {
 });
 
 client.on('message', message => {
-	if (message.channel.type=="news") client.channels.cache.get(channelIDs.botSpam).send(`<@${message.author.id}>, don't forget to publish your message!`)
 	if (!message.content.startsWith(prefix)) return
 
 	const args = message.content.slice(prefix.length).split(/ +/)
