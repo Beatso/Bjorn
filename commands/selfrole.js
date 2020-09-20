@@ -23,7 +23,7 @@ module.exports = {
 				}
 			} else {
 				console.log(changeRoles)
-				message.reply("See this message for more info on how to use the command:\n")
+				message.reply("See this message for more info on how to use the command:\nhttps://discord.com/channels/738126248194211960/738126248194211964/757325894749520002")
 			}
 		} catch (error) {console.error(error)}
     }
