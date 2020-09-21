@@ -2,9 +2,9 @@
 	"prefix": ".",
 	"color": 16087843,
 	"channelIDs": {
-		"communityCreations": 756241870404976741,
-		"creationsDiscussion": 756241898439704618,
-		"joinLeave": 740632604071690281,
-		"getRoles": 740838518116319322
+		"communityCreations": "756241870404976741",
+		"creationsDiscussion": "756241898439704618",
+		"joinLeave": "740632604071690281",
+		"getRoles": "740838518116319322",
 	}
 }
