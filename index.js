@@ -1,6 +1,6 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { prefix,channelIDs} = require('./config.json')
+const { prefix,channelIDs,color} = require('./config.json')
 require("dotenv").config()
 const keepAlive = require('./server')
 
@@ -91,6 +91,26 @@ client.on("messageReactionAdd", async (reaction, user) => {
 		else if (reaction.emoji.name == "⚪") { await reaction.message.guild.members.cache.get(user.id).roles.add("740955847517274113") }
 		else if (reaction.emoji.name == "🟣") { await reaction.message.guild.members.cache.get(user.id).roles.add("752975147815665675") }
 		else if (reaction.emoji.name == "🟤") { await reaction.message.guild.members.cache.get(user.id).roles.add("750442200302747669") }
+	}
+
+	if (reaction.emoji.name=="⭐") {
+		const message = reaction.message
+		const reactionData = message.reactions.cache.get("⭐")
+		if (reactionData.count>=5 && !reactionData.users.cache.has(client.user.id)) {
+			message.react("⭐")
+			const embed = {
+				color: 15844367,
+				author: {
+					name: message.author.username,
+					icon_url: message.author.avatarURL(),
+					url: message.url
+				},
+				description: message.content,
+				footer: { text: "#"+message.channel.name }
+			}
+			if (message.attachments.size!=0) embed.image = { url: message.attachments.entries().next().value[1].attachment }
+			client.channels.cache.get("759888269495894089").send({embed:embed})
+		}
 	}
 })
 
