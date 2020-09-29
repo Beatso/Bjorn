@@ -6,7 +6,7 @@ const keepAlive = require('./server')
 
 const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
 client.commands = new Discord.Collection()
-module.exports.client = client;
+module.exports.client = client
 const creationsWebhook = new Discord.WebhookClient(process.env.creationswebhookid,process.env.creationswebhooktoken)
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
 
@@ -18,8 +18,8 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('bot running')
-	client.user.setActivity('nothing, I am a bot :(')
-});
+	client.user.setActivity("a game")
+})
 
 client.on('message', message => {
 	if (!message.content.startsWith(prefix)) return
@@ -30,29 +30,27 @@ client.on('message', message => {
 	if (!client.commands.has(command)) return
 
 	// cooldown stuff
-	if (!cooldowns.has(command.name)) {
-		cooldowns.set(command.name, new Discord.Collection())
-	}
-	const now = Date.now();
-	const timestamps = cooldowns.get(command.name);
-	const cooldownAmount = (command.cooldown || 3) * 1000;
+	if (!cooldowns.has(command.name)) cooldowns.set(command.name, new Discord.Collection())
+	const now = Date.now()
+	const timestamps = cooldowns.get(command.name)
+	const cooldownAmount = (command.cooldown || 3) * 1000
 	if (timestamps.has(message.author.id)) {
-		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+		const expirationTime = timestamps.get(message.author.id) + cooldownAmount
 		if (now < expirationTime) {
-			const timeLeft = (expirationTime - now) / 1000;
-			return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing that command.`);
+			const timeLeft = (expirationTime - now) / 1000
+			return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing that command.`)
 		}
 	}
-	timestamps.set(message.author.id, now);
-	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+	timestamps.set(message.author.id, now)
+	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
 
 	try {
-		client.commands.get(command).execute(message, args);
+		client.commands.get(command).execute(message, args)
 	} catch (error) {
-		console.error(error);
-		message.reply('there was an error trying to execute that command!');
+		console.error(error)
+		message.reply('there was an error trying to execute that command!')
 	}
-});
+})
 
 client.on("message", message => {
 	if (message.channel.id!=channelIDs.communityCreations||message.author.id==client.user.id) return
@@ -68,20 +66,19 @@ client.on("message", message => {
 })
 
 client.on('guildMemberAdd', member => {
-	client.channels.cache.get("740632604071690281").send(`<@${member.id}> joined the server. \`${member.guild.memberCount}\``);
+	client.channels.cache.get("740632604071690281").send(`<@${member.id}> joined the server. \`${member.guild.memberCount}\``)
 	client.channels.cache.get("757300903819608146").setName(`Total Members: ${member.guild.memberCount}`)
-});
+})
 client.on('guildMemberRemove', member => {
-	client.channels.cache.get("740632604071690281").send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``);
+	client.channels.cache.get("740632604071690281").send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``)
 	client.channels.cache.get("757300903819608146").setName(`Total Members: ${member.guild.memberCount}`)
-});
+})
 
 
 client.on("messageReactionAdd", async (reaction, user) => {
-	if (reaction.message.partial) await reaction.message.fetch();
-	if (reaction.partial) await reaction.fetch();
-
-	if  (!reaction.message.guild) return;
+	if (reaction.message.partial) await reaction.message.fetch()
+	if (reaction.partial) await reaction.fetch()
+	if  (!reaction.message.guild) return
 
 	if (reaction.message.channel.id == channelIDs.getRoles) {
 		if (reaction.emoji.name == "🟢") { await reaction.message.guild.members.cache.get(user.id).roles.add("740902139416674345") }
@@ -115,10 +112,9 @@ client.on("messageReactionAdd", async (reaction, user) => {
 })
 
 client.on("messageReactionRemove", async (reaction, user) => {
-	if (reaction.message.partial) await reaction.message.fetch();
-	if (reaction.partial) await reaction.fetch();
-
-	if  (!reaction.message.guild) return;
+	if (reaction.message.partial) await reaction.message.fetch()
+	if (reaction.partial) await reaction.fetch()
+	if  (!reaction.message.guild) return
 
 	if (reaction.message.channel.id == channelIDs.getRoles) {
 		if (reaction.emoji.name == "🟢") { await reaction.message.guild.members.cache.get(user.id).roles.remove("740902139416674345") }
@@ -132,4 +128,4 @@ client.on("messageReactionRemove", async (reaction, user) => {
 })
 
 keepAlive()
-client.login(process.env.discordtoken);
+client.login(process.env.discordtoken)
