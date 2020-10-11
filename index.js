@@ -68,6 +68,7 @@ client.on("message", message => {
 client.on('guildMemberAdd', member => {
 	client.channels.cache.get("740632604071690281").send(`<@${member.id}> joined the server. \`${member.guild.memberCount}\``)
 	client.channels.cache.get("757300903819608146").setName(`Total Members: ${member.guild.memberCount}`)
+	member.roles.add(member.guild.roles.cache.find(role=>role.id=="764786089445556244")) // add member role
 })
 client.on('guildMemberRemove', member => {
 	client.channels.cache.get("740632604071690281").send(`<@${member.id}> left the server. \`${member.guild.memberCount}\``)
