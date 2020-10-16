@@ -94,7 +94,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 	if (reaction.emoji.name=="⭐") {
 		const message = reaction.message
 		const reactionData = message.reactions.cache.get("⭐")
-		if (reactionData.count>=5 && !reactionData.users.cache.has(client.user.id)) {
+		if (reactionData.count==5 && !reactionData.users.cache.has(client.user.id)) {
 			message.react("⭐")
 			const embed = {
 				color: 15844367,
