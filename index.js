@@ -87,9 +87,9 @@ client.on("messageReactionAdd", async (reaction, user) => {
 		const name = reactionRoleData.map(x=>x.name).indexOf(reaction.emoji.name)
 		const id = reactionRoleData.map(x=>x.id).indexOf(reaction.emoji.id)
 
-		if ( name != undefined || id != undefined ) {
-			if ( name != undefined ) data = reactionRoleData.name
-			else data = reactionRoleData.id
+		if ( name != -1 || id != -1 ) {
+			if ( name != -1 ) var data = reactionRoleData[name]
+			else var data = reactionRoleData[id]
 			if ( reaction.message.id == data.messageID ) await reaction.message.guild.members.cache.get(user.id).roles.add(data.role)
 		}
 
@@ -121,14 +121,18 @@ client.on("messageReactionRemove", async (reaction, user) => {
 	if (reaction.partial) await reaction.fetch()
 	if  (!reaction.message.guild) return
 
+	if (reaction.message.channel.id == channelIDs.getRoles) {
+
 		const name = reactionRoleData.map(x=>x.name).indexOf(reaction.emoji.name)
 		const id = reactionRoleData.map(x=>x.id).indexOf(reaction.emoji.id)
 
-		if ( name != undefined || id != undefined ) {
-			if ( name != undefined ) data = reactionRoleData.name
-			else data = reactionRoleData.id
+		if ( name != -1 || id != -1 ) {
+			if ( name != -1 ) var data = reactionRoleData[name]
+			else var data = reactionRoleData[id]
 			if ( reaction.message.id == data.messageID ) await reaction.message.guild.members.cache.get(user.id).roles.remove(data.role)
 		}
+
+	}
 
 })
 
