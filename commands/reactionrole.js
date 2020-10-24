@@ -50,22 +50,22 @@ module.exports = {
 			"color": 16087843,
 			"fields": [
 				{
-					"name": "👋 <#740632604071690281>",
+					"name": "👋 #join-leave",
 					"value": "Logs of people joining and leaving the server, plus total member count.",
 					"inline": true
 				},
 				{
-					"name": "<:fingermaps:769602982579798054> <#762413915279196222>",
+					"name": "<:fingermaps:769602982579798054> #fingermaps",
 					"value": "Announcements for [FingerMaps](https://fingermaps.net/), the map making team that Beatso is a part of.",
 					"inline": true
 				},
 				{
-					"name": "<:li_custom:754742002704187453> <#747148126061854750>",
+					"name": "<:li_custom:754742002704187453> #custom-github",
 					"value": "GitHub feed for [Little Improvements: Custom](https://github.com/LittleImprovementsCustom/LittleImprovementsCustom)",
 					"inline": true
 				},
 				{
-					"name": "<:li_variated:769603795986415647> <#747147068237283458>",
+					"name": "<:li_variated:769603795986415647> #variated-github",
 					"value": "GitHub feed for [Little Improvements: Variated](https://github.com/Beatso/LittleImprovementsVariated)",
 					"inline": true
 				}
@@ -88,7 +88,7 @@ module.exports = {
 					})
 					.catch(console.error);
 			});*/
-		getRolesChannel.send({accessEmbed}).then(reactionMessage=>{
+		getRolesChannel.send({embed:accessEmbed}).then(reactionMessage=>{
 			reactionMessage.react("👋")
 			reactionMessage.react("769602982579798054")
 			reactionMessage.react("754742002704187453")
