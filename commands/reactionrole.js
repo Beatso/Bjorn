@@ -45,7 +45,7 @@ module.exports = {
 			]
 		}
 		const accessEmbed = {
-			"title": "Get Notification Roles",
+			"title": "Get Access Roles",
 			"description": "React to this message with the relevant emojis to get access to see particular channels. If <@740671610490716200> is offline, please click [here](https://bjorn.beatso1.repl.co/) to wake him up.",
 			"color": 16087843,
 			"fields": [
@@ -88,11 +88,19 @@ module.exports = {
 					})
 					.catch(console.error);
 			});*/
-		getRolesChannel.send({embed:accessEmbed}).then(reactionMessage=>{
-			reactionMessage.react("👋")
-			reactionMessage.react("769602982579798054")
-			reactionMessage.react("754742002704187453")
-			reactionMessage.react("769603795986415647")
-		})
+		getRolesChannel.messages.fetch("769631662291550318")
+			.then(msg => {
+				msg.edit({ embed:accessEmbed })
+					.then((msg1) => {
+						// updated message
+					})
+					.catch(console.error);
+			});
+		// getRolesChannel.send({embed:accessEmbed}).then(reactionMessage=>{
+		// 	reactionMessage.react("👋")
+		// 	reactionMessage.react("769602982579798054")
+		// 	reactionMessage.react("754742002704187453")
+		// 	reactionMessage.react("769603795986415647")
+		// })
 	},
 };
