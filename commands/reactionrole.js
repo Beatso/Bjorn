@@ -2,7 +2,7 @@ module.exports = {
 	name: 'reactionrole',
 	cooldown: 0,
 	execute(message, args) {
-		const embed = {
+		const notificationEmbed = {
 			"title": "Get Notification Roles",
 			"description": "React to this message with the relevant emojis to be notified for updates to certain packs. If <@740671610490716200> is offline, please click [here](https://bjorn.beatso1.repl.co/) to wake him up.",
 			"color": 16087843,
@@ -44,6 +44,33 @@ module.exports = {
 				}
 			]
 		}
+		const accessEmbed = {
+			"title": "Get Notification Roles",
+			"description": "React to this message with the relevant emojis to get access to see particular channels. If <@740671610490716200> is offline, please click [here](https://bjorn.beatso1.repl.co/) to wake him up.",
+			"color": 16087843,
+			"fields": [
+				{
+					"name": "👋 <#740632604071690281>",
+					"value": "Logs of people joining and leaving the server, plus total member count.",
+					"inline": true
+				},
+				{
+					"name": "<:fingermaps:769602982579798054> <#762413915279196222>",
+					"value": "Announcements for [FingerMaps](https://fingermaps.net/), the map making team that Beatso is a part of.",
+					"inline": true
+				},
+				{
+					"name": "<:li_custom:754742002704187453> <#747148126061854750>",
+					"value": "GitHub feed for [Little Improvements: Custom](https://github.com/LittleImprovementsCustom/LittleImprovementsCustom)",
+					"inline": true
+				},
+				{
+					"name": "<:li_variated:769603795986415647> <#747147068237283458>",
+					"value": "GitHub feed for [Little Improvements: Variated](https://github.com/Beatso/LittleImprovementsVariated)",
+					"inline": true
+				}
+			]
+		}
         /*message.channel.send({ embed }).then(reactionMessage=>{
             reactionMessage.react("🟢");
             reactionMessage.react("🔴");
@@ -53,15 +80,19 @@ module.exports = {
             reactionMessage.react("🟣");
         })*/
 		const getRolesChannel = message.guild.channels.cache.get("740838518116319322")
-		getRolesChannel.messages.fetch("741544749235830796")
+		/*getRolesChannel.messages.fetch("741544749235830796")
 			.then(msg => {
-				// console.log(msg)
-				msg.edit({ embed })
+				msg.edit({ notificationEmbed })
 					.then((msg1) => {
-						console.log(`Updated the content of a message to ${msg1.content}`)
-						msg.react("🟤")
+						// updated message
 					})
 					.catch(console.error);
-			});
+			});*/
+		getRolesChannel.send({accessEmbed}).then(reactionMessage=>{
+			reactionMessage.react("👋")
+			reactionMessage.react("769602982579798054")
+			reactionMessage.react("754742002704187453")
+			reactionMessage.react("769603795986415647")
+		})
 	},
 };
