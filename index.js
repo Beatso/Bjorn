@@ -1,6 +1,7 @@
 const fs = require('fs')
 const Discord = require('discord.js')
 const { prefix,channelIDs,color} = require('./config.json')
+const reactionRoleData = require("./reactionroles.json")
 require("dotenv").config()
 const keepAlive = require('./server')
 
@@ -82,19 +83,16 @@ client.on("messageReactionAdd", async (reaction, user) => {
 	if  (!reaction.message.guild) return
 
 	if (reaction.message.channel.id == channelIDs.getRoles) {
-		else if (reaction.emoji.name == "🟣") { await reaction.message.guild.members.cache.get(user.id).roles.add("752975147815665675") }
-		if (reaction.emoji.name == "🟢") await reaction.message.guild.members.cache.get(user.id).roles.add("740902139416674345")
-		else if (reaction.emoji.name == "🔴") await reaction.message.guild.members.cache.get(user.id).roles.add("740955501595983872")
-		else if (reaction.emoji.name == "🔵") await reaction.message.guild.members.cache.get(user.id).roles.add("752975214140194817")
-		else if (reaction.emoji.name == "🟠") await reaction.message.guild.members.cache.get(user.id).roles.add("740955812481990717")
-		else if (reaction.emoji.name == "⚪") await reaction.message.guild.members.cache.get(user.id).roles.add("740955847517274113")
-		else if (reaction.emoji.name == "🟣") await reaction.message.guild.members.cache.get(user.id).roles.add("752975147815665675")
-		else if (reaction.emoji.name == "🟤") await reaction.message.guild.members.cache.get(user.id).roles.add("750442200302747669")
-		else if (reaction.emoji.name == "🟤") await reaction.message.guild.members.cache.get(user.id).roles.add("750442200302747669")
-		else if (reaction.emoji.name == "🟤") await reaction.message.guild.members.cache.get(user.id).roles.add("750442200302747669")
-		else if (reaction.emoji.name == "🟤") await reaction.message.guild.members.cache.get(user.id).roles.add("750442200302747669")
-		else if (reaction.emoji.name == "🟤") await reaction.message.guild.members.cache.get(user.id).roles.add("750442200302747669")
-		else if (reaction.emoji.name == "👋") await reaction.message.guild.members.cache.get(user.id).roles.add("757303116264767519")
+
+		const name = reactionRoleData.map(x=>x.name).indexOf(reaction.emoji.name)
+		const id = reactionRoleData.map(x=>x.id).indexOf(reaction.emoji.id)
+
+		if ( name != undefined || id != undefined ) {
+			if ( name != undefined ) data = reactionRoleData.name
+			else data = reactionRoleData.id
+			if ( reaction.message.id == data.messageID ) await reaction.message.guild.members.cache.get(user.id).roles.add(data.role)
+		}
+
 	}
 
 	if (reaction.emoji.name=="⭐") {
@@ -123,15 +121,15 @@ client.on("messageReactionRemove", async (reaction, user) => {
 	if (reaction.partial) await reaction.fetch()
 	if  (!reaction.message.guild) return
 
-	if (reaction.message.channel.id == channelIDs.getRoles) {
-		if (reaction.emoji.name == "🟢") await reaction.message.guild.members.cache.get(user.id).roles.remove("740902139416674345")
-		else if (reaction.emoji.name == "🔴") await reaction.message.guild.members.cache.get(user.id).roles.remove("740955501595983872")
-		else if (reaction.emoji.name == "🔵") await reaction.message.guild.members.cache.get(user.id).roles.remove("752975214140194817")
-		else if (reaction.emoji.name == "🟠") await reaction.message.guild.members.cache.get(user.id).roles.remove("740955812481990717")
-		else if (reaction.emoji.name == "⚪") await reaction.message.guild.members.cache.get(user.id).roles.remove("740955847517274113")
-		else if (reaction.emoji.name == "🟣") await reaction.message.guild.members.cache.get(user.id).roles.remove("752975147815665675")
-		else if (reaction.emoji.name == "🟤") await reaction.message.guild.members.cache.get(user.id).roles.remove("750442200302747669")
-	}
+		const name = reactionRoleData.map(x=>x.name).indexOf(reaction.emoji.name)
+		const id = reactionRoleData.map(x=>x.id).indexOf(reaction.emoji.id)
+
+		if ( name != undefined || id != undefined ) {
+			if ( name != undefined ) data = reactionRoleData.name
+			else data = reactionRoleData.id
+			if ( reaction.message.id == data.messageID ) await reaction.message.guild.members.cache.get(user.id).roles.remove(data.role)
+		}
+
 })
 
 keepAlive()
