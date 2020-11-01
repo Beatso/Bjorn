@@ -19,7 +19,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('bot running')
-	client.user.setActivity("h",{type:"CUSTOM_STATUS"})
+	client.user.setActivity("h",{type:"WATCHING"})
 })
 
 client.on('message', message => {
