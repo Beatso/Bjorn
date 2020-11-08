@@ -68,6 +68,11 @@ module.exports = {
 					"name": "<:li_variated:769603795986415647> #variated-github",
 					"value": "GitHub feed for [Little Improvements: Variated](https://github.com/Beatso/LittleImprovementsVariated)",
 					"inline": true
+				},
+				{
+					"name": "<:grass_block:774985841516740618> #minecraft-news",
+					"value": "News & Articles from the blog at [minecraft.net](https://www.minecraft.net/)",
+					"inline": true
 				}
 			]
 		}
@@ -92,7 +97,7 @@ module.exports = {
 			.then(msg => {
 				msg.edit({ embed:accessEmbed })
 					.then((msg1) => {
-						// updated message
+						msg1.react("774985841516740618")
 					})
 					.catch(console.error);
 			});
@@ -101,6 +106,7 @@ module.exports = {
 		// 	reactionMessage.react("769602982579798054")
 		// 	reactionMessage.react("754742002704187453")
 		// 	reactionMessage.react("769603795986415647")
+		// reactionMessage.react("774985841516740618")
 		// })
 	},
 };
