@@ -19,10 +19,24 @@ module.exports = {
 			title.splice(0,2)
 			title = title.join(" ")
 
+			const specifiedownerrepo = message.content.split("\n")[0].split(" ")[1]
+
+			let owner = specifiedownerrepo.split("/")[0]
+			let repo = specifiedownerrepo.split("/")[1]
+
+			if (specifiedownerrepo=="lic") {
+				owner = "LittleImprovementsCustom"
+				repo = "LittleImprovementsCustom"
+			} else if (specifiedownerrepo=="liv") {
+				owner = "Beatso"
+				repo = "LittleImprovementsVariated"
+			} else if (!specifiedownerrepo.includes("/")) owner = "Beatso"
+
+
 			try {
 				const result = await octokit.request('POST /repos/{owner}/{repo}/issues', {
-					owner: message.content.split("\n")[0].split(" ")[1].split("/")[0],
-					repo: message.content.split("\n")[0].split(" ")[1].split("/")[1],
+					owner: specifiedownerrepo.split("/")[0],
+					repo: specifiedownerrepo.split("/")[1],
 					title: title,
 					body: body
 				})
