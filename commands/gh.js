@@ -21,19 +21,19 @@ module.exports = {
 
 			const specifiedownerrepo = message.content.split("\n")[0].split(" ")[1]
 
-			let owner = specifiedownerrepo.split("/")[0]
-			let repo = specifiedownerrepo.split("/")[1]
-
 			if (specifiedownerrepo=="lic") {
 				owner = "LittleImprovementsCustom"
 				repo = "LittleImprovementsCustom"
 			} else if (specifiedownerrepo=="liv") {
 				owner = "Beatso"
 				repo = "LittleImprovementsVariated"
-			} else if (!specifiedownerrepo.includes("/")) owner = "Beatso"
-
-			if (owner = undefined) owner = specifiedownerrepo.split("/")[0]
-			if (repo = undefined) repo = specifiedownerrepo.split("/")[1]
+			} else if (!specifiedownerrepo.includes("/")) {
+				owner = "Beatso"
+				repo = specifiedownerrepo.split("/")[0]
+			} else {
+				owner = specifiedownerrepo.split("/")[0]
+				repo = specifiedownerrepo.split("/")[1]
+			}
 
 			try {
 				const result = await octokit.request('POST /repos/{owner}/{repo}/issues', {
