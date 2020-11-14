@@ -26,8 +26,8 @@ module.exports = {
 					title: title,
 					body: body
 				})
-			message.reply(result.data.html_url)
-			} catch (error) {console.error(error)}
+			message.channel.send(result.data.html_url)
+			} catch (error) {}
 
 		})()
 	}
