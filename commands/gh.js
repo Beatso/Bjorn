@@ -41,7 +41,7 @@ module.exports = {
 					body: body
 				})
 			message.channel.send(result.data.html_url)
-			} catch (error) {}
+			} catch (error) {message.channel.send("something when wrong creating that issue :c")}
 
 		})()
 	}
