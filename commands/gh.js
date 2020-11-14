@@ -32,11 +32,13 @@ module.exports = {
 				repo = "LittleImprovementsVariated"
 			} else if (!specifiedownerrepo.includes("/")) owner = "Beatso"
 
+			if (owner = undefined) owner = specifiedownerrepo.split("/")[0]
+			if (repo = undefined) repo = specifiedownerrepo.split("/")[1]
 
 			try {
 				const result = await octokit.request('POST /repos/{owner}/{repo}/issues', {
-					owner: specifiedownerrepo.split("/")[0],
-					repo: specifiedownerrepo.split("/")[1],
+					owner: owner,
+					repo: repo,
 					title: title,
 					body: body
 				})
