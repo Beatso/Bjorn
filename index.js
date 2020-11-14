@@ -5,6 +5,8 @@ const reactionRoleData = require("./reactionroles.json")
 require("dotenv").config()
 const keepAlive = require('./server')
 
+module.exports.githubtoken=process.env.githubtoken
+
 const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
 client.commands = new Discord.Collection()
 module.exports.client = client
