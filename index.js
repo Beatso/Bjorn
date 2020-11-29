@@ -6,6 +6,7 @@ require("dotenv").config()
 const keepAlive = require('./server')
 
 module.exports.githubtoken=process.env.githubtoken
+module.exports.beatsoghtoken=process.env.beatsoghtoken
 
 const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
 client.commands = new Discord.Collection()
