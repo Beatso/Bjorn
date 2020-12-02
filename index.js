@@ -57,16 +57,24 @@ client.on('message', message => {
 })
 
 client.on("message", message => {
-	if (message.channel.id!=channelIDs.communityCreations||message.author.id==client.user.id) return
+
 	if (
-		message.attachments.array().length==0 && // there is not an attachment
-		!message.content.includes("http://") && // there not is a link
-		!message.content.includes("https://") //there is not a link
-	) {
-		message.delete()
-		message.reply("your message was deleted because it didn't have an attachment, image or link. Please use <#756241898439704618> for talking about creations posted in this channel.").then(response=>response.delete({timeout:15000}))
-		creationsWebhook.send(message.content,{username:message.author.username,avatarURL:message.author.avatarURL({dynamic:true})})
-	}
+		message.channel.id!=channelIDs.communityCreations || // the message is not in community creations
+		message.author.id==client.user.id || // the message was sent my the bot
+		message.attachments.length>0 || // there is an attachment
+		message.content.includes("http://") || // there is a link
+		message.content.includes("https://") // there is a link
+
+	) return
+	
+	message.delete()
+	message.reply("your message was deleted because it didn't have an attachment, image or link. Please use <#756241898439704618> for talking about creations posted in this channel.").then(response=>response.delete({timeout:15000}))
+
+	if (message.member.nickname==null) name = message.author.username
+	else name = message.member.nickname
+
+	creationsWebhook.send(message.content, { username: name, avatarURL: message.author.avatarURL({dynamic:true}) } )
+
 })
 
 client.on('guildMemberAdd', member => {
