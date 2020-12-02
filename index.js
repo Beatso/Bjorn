@@ -63,7 +63,8 @@ client.on("message", message => {
 		message.author.id==client.user.id || // the message was sent my the bot
 		message.attachments.length>0 || // there is an attachment
 		message.content.includes("http://") || // there is a link
-		message.content.includes("https://") // there is a link
+		message.content.includes("https://") || // there is a link
+		message.author.id=="634776327299399721" // beatso sent the message
 
 	) return
 	
