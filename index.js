@@ -81,7 +81,8 @@ client.on("message", message => {
 client.on('guildMemberAdd', member => {
 	client.channels.cache.get("740632604071690281").send(`<:join:781306255033368609> <@${member.id}> joined the server. \`${member.guild.memberCount}\``)
 	client.channels.cache.get("757300903819608146").setName(`Total Members: ${member.guild.memberCount}`)
-	member.roles.add(member.guild.roles.cache.find(role=>role.id=="764786089445556244")) // add member role
+	if (member.user.bot) member.roles.add(member.guild.roles.cache.find(role=>role.id=="750456891615871036")) // add bot role
+	else member.roles.add(member.guild.roles.cache.find(role=>role.id=="764786089445556244")) // add member role
 })
 client.on('guildMemberRemove', member => {
 	client.channels.cache.get("740632604071690281").send(`<:leave:781306268702343208> <@${member.id}> left the server. \`${member.guild.memberCount}\``)
