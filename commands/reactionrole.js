@@ -11,42 +11,42 @@ module.exports = {
 				{
 					"name": ":green_circle:",
 					"value": "[Little Improvements: Variated](https://www.planetminecraft.com/texture-pack/little-improvements-variated/)",
-					"inline": false
+					"inline": true
 				},
 				{
 					"name": ":red_circle:",
 					"value": "[Little Improvements: Redstone](https://www.planetminecraft.com/texture-pack/little-improvements-redstone/)",
-					"inline": false
+					"inline": true
 				},
 				{
 					"name": ":blue_circle:",
 					"value": "[Little Improvements: Custom](https://www.littleimprovements-custom.tk/)",
-					"inline": false
+					"inline": true
 				},
 				{
 					"name": ":orange_circle:",
 					"value": "[New Resource Packs](https://www.planetminecraft.com/member/beatso/submissions/texture-packs/)",
-					"inline": false
+					"inline": true
 				},
 				{
 					"name": ":white_circle:",
 					"value": "[Resource Pack Info](https://www.beatso.tk/resource-pack-info)",
-					"inline": false
+					"inline": true
 				},
 				{
 					"name": ":purple_circle:",
 					"value": "[Roundup](https://discord.com/channels/738126248194211960/747855771454144653)",
-					"inline": false
+					"inline": true
 				},
 				{
 					"name": ":brown_circle:",
 					"value": "[Simple Auto Clicker](https://www.planetminecraft.com/mod/simple-auto-clicker/)",
-					"inline": false
+					"inline": true
 				},
 				{
 					"name": ":yellow_circle:",
 					"value": "[Chubins' Question of the Day](https://discord.com/channels/738126248194211960/785921209338298408)",
-					"inline": false
+					"inline": true
 				}
 			]
 		}
