@@ -5,7 +5,7 @@ module.exports = {
 		if (message.author.id!=634776327299399721) return
 		const notificationEmbed = {
 			"title": "Get Notification Roles",
-			"description": "React to this message with the relevant emojis to be notified for updates to certain packs. If <@740671610490716200> is offline, please click [here](https://bjorn.beatso1.repl.co/) to wake him up.",
+			"description": "React to this message with the relevant emojis to be notified for updates to certain packs.",
 			"color": 16087843,
 			"fields": [
 				{
@@ -52,7 +52,7 @@ module.exports = {
 		}
 		const accessEmbed = {
 			"title": "Get Access Roles",
-			"description": "React to this message with the relevant emojis to get access to see particular channels. If <@740671610490716200> is offline, please click [here](https://bjorn.beatso1.repl.co/) to wake him up.",
+			"description": "React to this message with the relevant emojis to get access to see particular channels.",
 			"color": 16087843,
 			"fields": [
 				{
