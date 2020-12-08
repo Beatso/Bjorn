@@ -11,42 +11,42 @@ module.exports = {
 				{
 					"name": ":green_circle:",
 					"value": "[Little Improvements: Variated](https://www.planetminecraft.com/texture-pack/little-improvements-variated/)",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": ":red_circle:",
 					"value": "[Little Improvements: Redstone](https://www.planetminecraft.com/texture-pack/little-improvements-redstone/)",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": ":blue_circle:",
 					"value": "[Little Improvements: Custom](https://www.littleimprovements-custom.tk/)",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": ":orange_circle:",
 					"value": "[New Resource Packs](https://www.planetminecraft.com/member/beatso/submissions/texture-packs/)",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": ":white_circle:",
 					"value": "[Resource Pack Info](https://www.beatso.tk/resource-pack-info)",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": ":purple_circle:",
 					"value": "[Roundup](https://discord.com/channels/738126248194211960/747855771454144653)",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": ":brown_circle:",
 					"value": "[Simple Auto Clicker](https://www.planetminecraft.com/mod/simple-auto-clicker/)",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": ":yellow_circle:",
 					"value": "[Chubins' Question of the Day](https://discord.com/channels/738126248194211960/785921209338298408)",
-					"inline": true
+					"inline": false
 				}
 			]
 		}
@@ -58,27 +58,27 @@ module.exports = {
 				{
 					"name": "👋 #join-leave",
 					"value": "Logs of people joining and leaving the server, plus total member count.",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": "<:fingermaps:769602982579798054> #fingermaps",
 					"value": "Announcements for [FingerMaps](https://fingermaps.net/), the map making team that Beatso is a part of.",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": "<:li_custom:754742002704187453> #custom-github",
 					"value": "GitHub feed for [Little Improvements: Custom](https://github.com/LittleImprovementsCustom/LittleImprovementsCustom)",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": "<:li_variated:769603795986415647> #variated-github",
 					"value": "GitHub feed for [Little Improvements: Variated](https://github.com/Beatso/LittleImprovementsVariated)",
-					"inline": true
+					"inline": false
 				},
 				{
 					"name": "<:grass_block:774985841516740618> #minecraft-news",
 					"value": "News & Articles from the blog at [minecraft.net](https://www.minecraft.net/)",
-					"inline": true
+					"inline": false
 				}
 			]
 		}
@@ -95,18 +95,18 @@ module.exports = {
 			.then(msg => {
 				msg.edit({ embed: notificationEmbed })
 					.then((msg1) => {
-						msg1.react("🟡");
+						// msg1.react("🟡");
 					})
 					.catch(console.error);
 			});
-		/*getRolesChannel.messages.fetch("769631662291550318")
+		getRolesChannel.messages.fetch("769631662291550318")
 			.then(msg => {
 				msg.edit({ embed:accessEmbed })
 					.then((msg1) => {
-						msg1.react("774985841516740618")
+						// msg1.react("774985841516740618")
 					})
 					.catch(console.error);
-			});*/
+			});
 		// getRolesChannel.send({embed:accessEmbed}).then(reactionMessage=>{
 		// 	reactionMessage.react("👋")
 		// 	reactionMessage.react("769602982579798054")
