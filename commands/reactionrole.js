@@ -93,7 +93,7 @@ module.exports = {
 		const getRolesChannel = message.guild.channels.cache.get("740838518116319322")
 		getRolesChannel.messages.fetch("741544749235830796")
 			.then(msg => {
-				msg.edit({ notificationEmbed })
+				msg.edit({ embed: notificationEmbed })
 					.then((msg1) => {
 						msg1.react("🟡");
 					})
