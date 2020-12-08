@@ -76,7 +76,7 @@ module.exports = {
 					"inline": false
 				},
 				{
-					"name": "<:grass_block:774985841516740618> #minecraft-news",
+					"name": "<:snow_golem:741554927691759666> #minecraft-news",
 					"value": "News & Articles from the blog at [minecraft.net](https://www.minecraft.net/)",
 					"inline": false
 				}
