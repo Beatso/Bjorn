@@ -2,6 +2,7 @@ module.exports = {
 	name: 'reactionrole',
 	cooldown: 0,
 	execute(message, args) {
+		if (message.author.id!=634776327299399721) return
 		const notificationEmbed = {
 			"title": "Get Notification Roles",
 			"description": "React to this message with the relevant emojis to be notified for updates to certain packs. If <@740671610490716200> is offline, please click [here](https://bjorn.beatso1.repl.co/) to wake him up.",
@@ -40,6 +41,11 @@ module.exports = {
 				{
 					"name": ":brown_circle:",
 					"value": "[Simple Auto Clicker](https://www.planetminecraft.com/mod/simple-auto-clicker/)",
+					"inline": true
+				},
+				{
+					"name": ":yellow_circle:",
+					"value": "[Chubins' Question of the Day](https://discord.com/channels/738126248194211960/785921209338298408)",
 					"inline": true
 				}
 			]
@@ -85,22 +91,22 @@ module.exports = {
             reactionMessage.react("🟣");
         })*/
 		const getRolesChannel = message.guild.channels.cache.get("740838518116319322")
-		/*getRolesChannel.messages.fetch("741544749235830796")
+		getRolesChannel.messages.fetch("741544749235830796")
 			.then(msg => {
 				msg.edit({ notificationEmbed })
 					.then((msg1) => {
-						// updated message
+						msg1.react("🟡");
 					})
 					.catch(console.error);
-			});*/
-		getRolesChannel.messages.fetch("769631662291550318")
+			});
+		/*getRolesChannel.messages.fetch("769631662291550318")
 			.then(msg => {
 				msg.edit({ embed:accessEmbed })
 					.then((msg1) => {
 						msg1.react("774985841516740618")
 					})
 					.catch(console.error);
-			});
+			});*/
 		// getRolesChannel.send({embed:accessEmbed}).then(reactionMessage=>{
 		// 	reactionMessage.react("👋")
 		// 	reactionMessage.react("769602982579798054")
