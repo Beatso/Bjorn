@@ -1,12 +1,11 @@
 module.exports = {
 	name: 'updaterr',
-	usage: "[issue key]",
     description: "Updates reaction role messages.",
     availableTo: "<@634776327299399721>",
 	execute(message, args) {
 		if (message.author.id!=634776327299399721) return
 		const notificationEmbed = {
-			"title": "Get Notification Roles",
+			"title": "🔔 Get Notification Roles",
 			"description": "React to this message with the relevant emojis to be notified for updates to certain packs.",
 			"color": 16087843,
 			"fields": [
@@ -53,7 +52,7 @@ module.exports = {
 			]
 		}
 		const accessEmbed = {
-			"title": "Get Access Roles",
+			"title": "👁‍🗨 Get Access Roles",
 			"description": "React to this message with the relevant emojis to get access to see particular channels.",
 			"color": 16087843,
 			"fields": [
@@ -84,6 +83,28 @@ module.exports = {
 				}
 			]
 		}
+		const pronounsEmbed = {
+			"title": "🙋 Get Pronoun Roles",
+			"description": "React to this message with the relevant emojis to get access to see particular channels.",
+			"color": 16087843,
+			"fields": [
+				{
+					"name": "🟠",
+					"value": "she/her",
+					"inline": true
+				},
+				{
+					"name": "🟧",
+					"value": "he/him",
+					"inline": true
+				},
+				{
+					"name": "🔶",
+					"value": "they/them",
+					"inline": true
+				}
+			]
+		}
         /*message.channel.send({ embed }).then(reactionMessage=>{
             reactionMessage.react("🟢");
             reactionMessage.react("🔴");
@@ -109,12 +130,10 @@ module.exports = {
 					})
 					.catch(console.error);
 			});
-		// getRolesChannel.send({embed:accessEmbed}).then(reactionMessage=>{
-		// 	reactionMessage.react("👋")
-		// 	reactionMessage.react("769602982579798054")
-		// 	reactionMessage.react("754742002704187453")
-		// 	reactionMessage.react("769603795986415647")
-		// reactionMessage.react("774985841516740618")
-		// })
+		getRolesChannel.send({embed:pronounsEmbed}).then(reactionMessage=>{
+			reactionMessage.react("🟠")
+			reactionMessage.react("🟧")
+			reactionMessage.react("🔶")
+		})
 	},
 };
