@@ -4,8 +4,11 @@ const JiraClient = require("jira-connector")
 const jira = new JiraClient({host: "bugs.mojang.com"})
 
 module.exports = {
-    name: "mcbug",
-    aliases: ["bug"],
+    name: "minecraftbug",
+    aliases: ["mcbug", "bug"],
+    usage: "[issue key]",
+    description: "Shows info about a Minecraft bug.",
+    availableTo: "@everyone",
 	execute(message, args) {
         (async function () {
             try {

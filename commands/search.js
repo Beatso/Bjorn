@@ -3,6 +3,9 @@ const { prefix, color } = require('../config.json');
 module.exports = {
     name: 'search',
     aliases: ["google"],
+    usage: "[query]",
+    description: "Sends a link to a google search.",
+    availableTo: "@everyone",
 	execute(message, args) {
         var embed
         if (args.length!=0) response = `https://www.google.com/search?q=${encodeURI(args.join(" "))}`

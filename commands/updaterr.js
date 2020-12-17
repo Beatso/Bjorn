@@ -1,5 +1,8 @@
 module.exports = {
 	name: 'updaterr',
+	usage: "[issue key]",
+    description: "Updates reaction role messages.",
+    availableTo: "<@634776327299399721>",
 	execute(message, args) {
 		if (message.author.id!=634776327299399721) return
 		const notificationEmbed = {

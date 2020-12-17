@@ -8,6 +8,10 @@ const octokit_beatso = new Octokit({ auth: beatsoghtoken });
 module.exports = {
 	name: "githubissue",
 	aliases: ["ghissue", "github", "gh"],
+	description: "Opens an issue on GitHub.",
+	usage: "[repo] [issue title]\n<issue body>\n<options>",
+	parameters: "**Repo**: In the format `owner/reponame`. If no owner is specified, it will default to `Beatso`. The shortcuts `lic` and `liv` can also be used.\n**Issue Title**: The title of the issue to open.\n**Issue Body**: *optional* The description of the issue. Supports full [markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).\n**Options**: *optional* Only works for <@634776327299399721> `; assign [assignee]; label [labels, separated by commas]`",
+	availableTo: "@everyone",
 	execute(message, args) {
 		(async function () {
 
@@ -16,7 +20,7 @@ module.exports = {
 			hasArgs = false
 			if (body[body.length-1].startsWith("; ")) {
 				hasArgs = true
-				args = body[body.length-1]
+				issueArgs = body[body.length-1]
 				body.splice(body.length-1, body.length)
 			}
 			body = body.join("\n")
@@ -27,12 +31,10 @@ module.exports = {
 			title = title.join(" ")
 
 			const specifiedownerrepo = message.content.split("\n")[0].split(" ")[1]
-
-			console.log(hasArgs)
 			
 			assignee = null
 			labels = null
-			if (hasArgs) for (i of args.split("; ")) {
+			if (hasArgs) for (i of issueArgs.split("; ")) {
 				if (i.startsWith("assign ")) {
 					assignee = i.split(" ")[1]
 				} else if (i.startsWith("label ")) {

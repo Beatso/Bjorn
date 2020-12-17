@@ -4,6 +4,10 @@ const {client} = require("../index.js")
 module.exports = {
 	name: 'userinfo',
 	aliases: ["about", "user", "profile"],
+	usage: "<user>",
+    description: "Gets info about a particular user.",
+	availableTo: "@everyone",
+	parameters: "**User**: *optional* the id or @mention of the user you want info about. Defaults to the author if unspecified.",
 	execute(message, args) {
 	
 

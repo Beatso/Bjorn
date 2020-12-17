@@ -3,6 +3,8 @@ const {channelIDs} = require("../config.json")
 module.exports = {
     name: "offtopic",
     aliases: ["ot"],
+    description: "Sends a message about a conversation being off topic.",
+    availableTo: "@everyone",
 	execute(message, args) {
         message.delete()
             .catch((error)=>console.log(error))

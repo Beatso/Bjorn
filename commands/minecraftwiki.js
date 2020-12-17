@@ -1,8 +1,11 @@
 const { prefix, color } = require('../config.json');
 
 module.exports = {
-    name: 'mcwiki',
-    aliases: ["wiki"],
+    name: 'minecraftwiki',
+    aliases: ["mcwiki","wiki"],
+    usage: "[query]",
+    description: "Searches the Minecraft Wiki or gets a link to a particular page",
+    availableTo: "@everyone",
 	execute(message, args) {
         var embed
         if (args.length!=0) response = `<https://minecraft.gamepedia.com/index.php?search=${encodeURI(args.join(" "))}>`
