@@ -1,6 +1,5 @@
 module.exports = {
 	name: 'reactionrole',
-	cooldown: 0,
 	execute(message, args) {
 		if (message.author.id!=634776327299399721) return
 		const notificationEmbed = {

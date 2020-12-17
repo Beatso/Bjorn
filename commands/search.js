@@ -2,7 +2,6 @@ const { prefix, color } = require('../config.json');
 
 module.exports = {
     name: 'search',
-    cooldown: 5,
 	execute(message, args) {
         var embed
         if (args.length!=0) response = `https://www.google.com/search?q=${encodeURI(args.join(" "))}`

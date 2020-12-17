@@ -2,7 +2,6 @@ const {channelIDs} = require("../config.json")
 
 module.exports = {
     name: "offtopic",
-    cooldown: 10,
 	execute(message, args) {
         message.delete()
             .catch((error)=>console.log(error))

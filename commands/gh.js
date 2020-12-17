@@ -7,7 +7,6 @@ const octokit_beatso = new Octokit({ auth: beatsoghtoken });
 
 module.exports = {
     name: "gh",
-    cooldown: 5,
 	execute(message, args) {
 		(async function () {
 
