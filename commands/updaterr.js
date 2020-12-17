@@ -85,22 +85,27 @@ module.exports = {
 		}
 		const pronounsEmbed = {
 			"title": "🙋 Get Pronoun Roles",
-			"description": "React to this message with the relevant emojis to get access to see particular channels.",
+			"description": "React to this message with the relevant emojis to get roles that tell others your pronouns.",
 			"color": 16087843,
 			"fields": [
 				{
-					"name": "🟠",
+					"name": "🟧",
 					"value": "she/her",
 					"inline": true
 				},
 				{
-					"name": "🟧",
+					"name": "🟨",
 					"value": "he/him",
 					"inline": true
 				},
 				{
-					"name": "🔶",
+					"name": "🟥",
 					"value": "they/them",
+					"inline": true
+				},
+				{
+					"name": "🟪",
+					"value": "other",
 					"inline": true
 				}
 			]
@@ -130,10 +135,22 @@ module.exports = {
 					})
 					.catch(console.error);
 			});
-		getRolesChannel.send({embed:pronounsEmbed}).then(reactionMessage=>{
-			reactionMessage.react("🟠")
-			reactionMessage.react("🟧")
-			reactionMessage.react("🔶")
-		})
+		getRolesChannel.messages.fetch("789241641092775957")
+		.then(msg => {
+			msg.edit({ embed:pronounsEmbed })
+				.then((msg1) => {
+					msg1.react("🟧")
+					msg1.react("🟨")
+					msg1.react("🟥")
+					msg1.react("🟪")
+					// msg1.react("774985841516740618")
+				})
+				.catch(console.error);
+		});
+		// getRolesChannel.send({embed:pronounsEmbed}).then(reactionMessage=>{
+		// 	reactionMessage.react("🟠")
+		// 	reactionMessage.react("🟧")
+		// 	reactionMessage.react("🔶")
+		// })
 	},
 };
