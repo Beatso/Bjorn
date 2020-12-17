@@ -11,7 +11,6 @@ module.exports = {
             try {
                 const issueKey = args[0].toUpperCase()
                 const issue = await jira.issue.getIssue({issueKey:issueKey})
-                console.log(issue.fields)
                 let returnValue = {embed:{
                     author: {
                         name: issue.fields.reporter.name,
