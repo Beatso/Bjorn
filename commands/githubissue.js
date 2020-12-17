@@ -6,7 +6,8 @@ const octokit_beatso = new Octokit({ auth: beatsoghtoken });
 
 
 module.exports = {
-    name: "gh",
+	name: "githubissue",
+	aliases: ["ghissue", "github", "gh"],
 	execute(message, args) {
 		(async function () {
 

@@ -4,8 +4,8 @@ const JiraClient = require("jira-connector")
 const jira = new JiraClient({host: "bugs.mojang.com"})
 
 module.exports = {
-    name: 'bug',
-    cooldown: 5,
+    name: "mcbug",
+    aliases: ["bug"],
 	execute(message, args) {
         (async function () {
             try {

@@ -1,7 +1,8 @@
 const { prefix, color } = require('../config.json');
 
 module.exports = {
-    name: 'wiki',
+    name: 'mcwiki',
+    aliases: ["wiki"],
 	execute(message, args) {
         var embed
         if (args.length!=0) response = `https://minecraft.gamepedia.com/index.php?search=${encodeURI(args.join(" "))}`
