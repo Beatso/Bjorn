@@ -46,7 +46,12 @@ module.exports = {
 				},
 				{
 					"name": ":yellow_circle:",
-					"value": "[Chubins' Question of the Day](https://discord.com/channels/738126248194211960/785921209338298408)",
+					"value": "[Question of the Day](https://discord.com/channels/738126248194211960/785921209338298408)",
+					"inline": true
+				},
+				{
+					"name": ":black_circle:",
+					"value": "[Song of the Day](https://discord.com/channels/738126248194211960/789287836943122442)",
 					"inline": true
 				}
 			]
@@ -123,30 +128,30 @@ module.exports = {
 			.then(msg => {
 				msg.edit({ embed: notificationEmbed })
 					.then((msg1) => {
-						// msg1.react("🟡");
+						msg1.react("⚫");
 					})
 					.catch(console.error);
 			});
-		getRolesChannel.messages.fetch("769631662291550318")
-			.then(msg => {
-				msg.edit({ embed:accessEmbed })
-					.then((msg1) => {
-						// msg1.react("774985841516740618")
-					})
-					.catch(console.error);
-			});
-		getRolesChannel.messages.fetch("789241641092775957")
-		.then(msg => {
-			msg.edit({ embed:pronounsEmbed })
-				.then((msg1) => {
-					msg1.react("🟧")
-					msg1.react("🟨")
-					msg1.react("🟥")
-					msg1.react("🟪")
-					// msg1.react("774985841516740618")
-				})
-				.catch(console.error);
-		});
+		// getRolesChannel.messages.fetch("769631662291550318")
+		// 	.then(msg => {
+		// 		msg.edit({ embed:accessEmbed })
+		// 			.then((msg1) => {
+		// 				// msg1.react("774985841516740618")
+		// 			})
+		// 			.catch(console.error);
+		// 	});
+		// getRolesChannel.messages.fetch("789241641092775957")
+		// .then(msg => {
+		// 	msg.edit({ embed:pronounsEmbed })
+		// 		.then((msg1) => {
+		// 			msg1.react("🟧")
+		// 			msg1.react("🟨")
+		// 			msg1.react("🟥")
+		// 			msg1.react("🟪")
+		// 			// msg1.react("774985841516740618")
+		// 		})
+		// 		.catch(console.error);
+		// });
 		// getRolesChannel.send({embed:pronounsEmbed}).then(reactionMessage=>{
 		// 	reactionMessage.react("🟠")
 		// 	reactionMessage.react("🟧")
