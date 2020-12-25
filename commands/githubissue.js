@@ -33,7 +33,7 @@ module.exports = {
 			const specifiedownerrepo = message.content.split("\n")[0].split(" ")[1]
 			
 			assignee = null
-			labels = null
+			labels = []
 			if (hasArgs) for (i of issueArgs.split("; ")) {
 				if (i.startsWith("assign ")) {
 					assignee = i.split(" ")[1]
