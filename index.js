@@ -102,11 +102,13 @@ client.on("messageReactionAdd", async (reaction, user) => {
 		const message = reaction.message
 		const reactionData = message.reactions.cache.get("⭐")
 		if (reactionData.count==5 && !reactionData.users.cache.has(client.user.id)) {
+			if (message.member.nickname==null) name = message.author.username
+			else name = `${message.member.nickname} (${message.author.username})`
 			message.react("⭐")
 			const embed = {
 				color: 15844367,
 				author: {
-					name: message.author.username,
+					name: name,
 					icon_url: message.author.avatarURL()
 				},
 				description: message.content,
