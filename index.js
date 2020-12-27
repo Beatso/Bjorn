@@ -96,6 +96,8 @@ client.on("messageReactionAdd", async (reaction, user) => {
 
 	}
 
+
+	// starboard
 	if (reaction.emoji.name=="⭐") {
 		const message = reaction.message
 		const reactionData = message.reactions.cache.get("⭐")
@@ -105,10 +107,13 @@ client.on("messageReactionAdd", async (reaction, user) => {
 				color: 15844367,
 				author: {
 					name: message.author.username,
-					icon_url: message.author.avatarURL(),
-					url: message.url
+					icon_url: message.author.avatarURL()
 				},
 				description: message.content,
+				fields: [{
+					"name": "Original",
+					"value": `[Jump](${message.url})`
+				}],
 				footer: { text: "#"+message.channel.name }
 			}
 			if (message.attachments.size!=0) embed.image = { url: message.attachments.entries().next().value[1].attachment }
