@@ -18,13 +18,13 @@ module.exports = {
 					"color": color,
 					"author": {
 						"name": body[0].name,
-						"icon_url": `https://crafatar.com/avatars/${body[0].id}`
+						"icon_url": `https://crafatar.com/avatars/${body[0].id}?overlay`
 					},
 					"thumbnail": {
 						"url": `https://crafatar.com/skins/${body[0].id}`
 					},
 					"image": {
-						"url": `https://crafatar.com/renders/body/${body[0].id}`
+						"url": `https://crafatar.com/renders/body/${body[0].id}?overlay`
 					},
 					"footer": {
 						"text": body[0].id
