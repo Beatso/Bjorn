@@ -149,7 +149,7 @@ client.on("message", message => {
 			message.content.includes("discord.gg") ||
 			message.content.includes("discord.com/invite")
 		) &&
-		!message.author.id == "634776327299399721"
+		message.author.id != "634776327299399721"
 	) {
 		message.delete().then(message => message.reply("don't send invite links!"))
 	}
