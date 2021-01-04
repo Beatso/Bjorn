@@ -2,7 +2,7 @@ const fs = require('fs')
 const Discord = require('discord.js')
 const { prefix,channelIDs,color} = require('./config.json')
 const reactionRoleData = require("./reactionroles.json")
-require("dotenv").config({ path: '../.env' })
+require("dotenv").config()
 const keepAlive = require('./server')
 
 module.exports.githubtoken=process.env.githubtoken
