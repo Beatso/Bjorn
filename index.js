@@ -3,7 +3,6 @@ const Discord = require('discord.js')
 const { prefix,channelIDs,color} = require('./config.json')
 const reactionRoleData = require("./reactionroles.json")
 require("dotenv").config()
-const keepAlive = require('./server')
 
 module.exports.githubtoken=process.env.githubtoken
 module.exports.beatsoghtoken=process.env.beatsoghtoken
@@ -153,5 +152,4 @@ client.on("message", message => {
 	}
 })
 
-keepAlive()
 client.login(process.env.discordtoken)

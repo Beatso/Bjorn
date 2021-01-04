@@ -14,7 +14,6 @@
     "@octokit/request": "^5.4.12",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
     "jira-connector": "^3.1.0",
     "request": "^2.88.2"
   }
