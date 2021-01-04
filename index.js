@@ -145,8 +145,11 @@ client.on("messageReactionRemove", async (reaction, user) => {
 
 client.on("message", message => {
 	if (
-		message.content.includes("discord.gg") ||
-		message.content.includes("discord.com/invite")
+		(
+			message.content.includes("discord.gg") ||
+			message.content.includes("discord.com/invite")
+		) &&
+		!message.member.hasPermission("MANAGE_MESSAGES")
 	) {
 		message.delete().then(message => message.reply("don't send invite links!"))
 	}
