@@ -1,6 +1,6 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { prefix,channelIDs,color} = require('./config.json')
+const { prefix,channelIDs,defaultCooldown} = require('./config.json')
 const reactionRoleData = require("./reactionroles.json")
 require("dotenv").config()
 
@@ -12,6 +12,7 @@ client.commands = new Discord.Collection()
 module.exports.client = client
 const creationsWebhook = new Discord.WebhookClient(process.env.creationswebhookid,process.env.creationswebhooktoken)
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'))
+const cooldowns = new Discord.Collection()
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`)
@@ -33,6 +34,26 @@ client.on('message', message => {
 		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 		
 	if (!command) return
+	
+
+
+	if (!cooldowns.has(command.name)) cooldowns.set(command.name, new Discord.Collection())
+
+	const now = Date.now()
+	const timestamps = cooldowns.get(command.name)
+	const cooldownAmount = (command.cooldown || defaultCooldown) * 1000
+
+	if (timestamps.has(message.author.id)) {
+		const expirationTime = timestamps.get(message.author.id) + cooldownAmount
+		if (now < expirationTime) {
+			const timeLeft = (expirationTime - now) / 1000
+			return message.reply(`you're on cooldown! Please wait ${timeLeft.toFixed(1)} more seconds before using that command again.`)
+		}
+	}
+
+	timestamps.set(message.author.id, now)
+	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount)
+
 	
 
 	try {
