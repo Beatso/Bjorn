@@ -1,5 +1,5 @@
 const prettyMilliseconds = require("pretty-ms")
-const client = require("../index.js")
+const { client } = require("../index.js")
 const { color } = require("../config.json")
 
 module.exports = {
