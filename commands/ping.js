@@ -18,7 +18,7 @@ module.exports = {
                 },
                 {
                     name: "Uptime",
-                    value: prettyMilliseconds(client.uptime)
+                    value: prettyMilliseconds(client.uptime, {secondsDecimalDigits: 0})
                 }
             ],
             footer: {
