@@ -9,16 +9,16 @@ module.exports = {
 		else {
 			if (args.length=0) message.channel.send("Specify a role name!")
 			else {
-			// add role
-			message.guild.roles.create ({
-				data : {
-					name : args.join(" ")
-				},
-				reason: `Created by ${message.author.tag}`
-			})
-				.then(role => {
-					message.channel.send(`Created role ${role.toString()}`)
+				// add role
+				message.guild.roles.create ({
+					data : {
+						name : args.join(" ")
+					},
+					reason: `Created by ${message.author.tag}`
 				})
+					.then(role => {
+						message.channel.send(`Created role ${role.toString()}`)
+					})
 			}
 		}
 	}
