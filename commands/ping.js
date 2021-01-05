@@ -21,7 +21,9 @@ module.exports = {
                     value: prettyMilliseconds(client.uptime)
                 }
             ],
-            timestamp: new Date()
+            footer: {
+                text: String((new Date).toUTCString())
+            }
         }})
     },
 }
