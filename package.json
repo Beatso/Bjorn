@@ -12,7 +12,8 @@
   "dependencies": {
     "@octokit/core": "^3.2.4",
     "@octokit/request": "^5.4.12",
-    "discord.js": "^12.5.1",
+    "canvas": "^2.6.1",
+    "discord.js": "github:discordjs/discord.js#pull/4874/head",
     "dotenv": "^8.2.0",
     "jira-connector": "^3.1.0",
     "pretty-ms": "^7.0.1",
