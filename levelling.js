@@ -6,12 +6,24 @@ client.points = new Enmap({name: "points"})
 
 const randBetween = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
-const giveXP = (member, amount, fromMessage) => {
+module.exports.giveXP = (member, amount, fromMessage) => {
 
 	if (member.user.bot)
 		return {
 			success: false,
 			reason: "Cannot give experience to bots"
+		}
+
+	if (isNan(amount))
+		return {
+			success: false,
+			reason: "Amount was not a whole number."
+		}
+
+	if (!Number.isInteger(amount))
+		return {
+			success: false,
+			reason: "Amount must be a whole number."
 		}
 
 	client.points.ensure(member.id, {
@@ -72,7 +84,7 @@ client.on("message", message => {
 		message.channel.guild.id != "725272235090378803" // message is not in correct guild
 		) return
 
-	giveXP(message.member, randBetween(8, 12), true)
+	this.giveXP(message.member, randBetween(8, 12), true)
 	message.reply("given xp")
 
 })
