@@ -177,3 +177,5 @@ client.on("message", message => {
 })
 
 client.login(process.env.discordtoken)
+
+require("./levelling.js")
