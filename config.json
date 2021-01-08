@@ -15,5 +15,6 @@
 	],
 	"blacklistedXPCategories": [
 		"789288464910254080"
-	]
+	],
+	"timeBetweenXPMessages": 60000
 }

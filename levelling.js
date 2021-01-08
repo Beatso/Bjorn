@@ -1,20 +1,32 @@
 const Enmap = require ("enmap")
 const {client} = require("./index.js")
-const { prefix, blacklistedXPCategories, blacklistedXPChannels } = require("./config.json")
+const { prefix, blacklistedXPCategories, blacklistedXPChannels, timeBetweenXPMessages } = require("./config.json")
 
 client.points = new Enmap({name: "points"})
 
 const randBetween = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
-const giveXP = (member, amount) => {
+const giveXP = (member, amount, fromMessage) => {
 
-	if (member.user.bot) return { success: false, reason: "Cannot give experience to bots" }
+	if (member.user.bot)
+		return {
+			success: false,
+			reason: "Cannot give experience to bots"
+		}
 
 	client.points.ensure(member.id, {
 		points: 0,
 		level: 1,
 		notificationPreference: "server"
 	})
+
+	if (!client.points.get(member.id, "lastXPMessage"))
+		client.points.set(membed.id, Date.now() - timeBetweenXPMessages)
+
+	if (
+		fromMessage &&
+		Date.now() - client.points.get(member.id, "lastXPMessage") < 60
+	) return
 
 	// add points
 	client.points.math(member.id, "+", amount, "points")
@@ -36,6 +48,10 @@ const giveXP = (member, amount) => {
 				break
 		}
 	}
+
+	return {
+		success: true
+	}
 }
 
 // give xp for messages sent
@@ -56,7 +72,7 @@ client.on("message", message => {
 		message.channel.guild.id != "725272235090378803" // message is not in correct guild
 		) return
 
-	// giveXP(randBetween(8, 12))
-	message.reply("hi")
+	giveXP(message.member, randBetween(8, 12), true)
+	message.reply("given xp")
 
 })
