@@ -70,7 +70,7 @@ module.exports = {
 			try {
 				if (message.author.id=="634776327299399721") result = await octokit_beatso.request('POST /repos/{owner}/{repo}/issues', issueRequestArgs)
 				else result = await octokit_bjorn.request('POST /repos/{owner}/{repo}/issues', issueRequestArgs)
-			message.channel.send(result.data.html_url)
+			message.channel.send(`<${result.data.html_url}>`)
 			} catch (error) {message.channel.send("something when wrong creating that issue :c")}
 
 		})()
