@@ -142,11 +142,24 @@ client.on("messageReactionAdd", async (reaction, user) => {
 					icon_url: message.author.avatarURL()
 				},
 				description: message.content,
-				fields: [{
-					"name": "Original Message",
-					"value": `[Jump](${message.url})`
-				}],
-				footer: { text: "#"+message.channel.name }
+				fields: [
+					{
+						"name": "Original Message",
+						"value": `[Jump](${message.url})`,
+						"inline": true
+					},
+					{
+						"name": "Channel",
+						"value": message.channel.toString(),
+						"inline": true
+					},
+					{
+						"name": "Time",
+						"value": message.createdAt.toUTCString(),
+						"inline": true
+					}
+				],
+				footer: { text: message.id }
 			}
 			if (message.attachments.size!=0) embed.image = { url: message.attachments.entries().next().value[1].attachment }
 			client.channels.cache.get("759888269495894089").send({embed:embed})
