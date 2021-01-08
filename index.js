@@ -143,13 +143,14 @@ client.on("messageReactionAdd", async (reaction, user) => {
 				},
 				description: message.content,
 				fields: [{
-					"name": "Original",
+					"name": "Original Message",
 					"value": `[Jump](${message.url})`
 				}],
 				footer: { text: "#"+message.channel.name }
 			}
 			if (message.attachments.size!=0) embed.image = { url: message.attachments.entries().next().value[1].attachment }
 			client.channels.cache.get("759888269495894089").send({embed:embed})
+
 		}
 	}
 })
