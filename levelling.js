@@ -8,13 +8,15 @@ const randBetween = (min, max) => Math.floor(Math.random() * (max - min + 1)) + 
 
 module.exports.giveXP = (member, amount, fromMessage) => {
 
+	console.log(member)
+
 	if (member.user.bot)
 		return {
 			success: false,
 			reason: "Cannot give experience to bots"
 		}
 
-	if (isNan(amount))
+	if (Number.isNaN(amount))
 		return {
 			success: false,
 			reason: "Amount was not a whole number."
@@ -33,7 +35,7 @@ module.exports.giveXP = (member, amount, fromMessage) => {
 	})
 
 	if (!client.points.get(member.id, "lastXPMessage"))
-		client.points.set(membed.id, Date.now() - timeBetweenXPMessages)
+		client.points.set(member.id, Date.now() - timeBetweenXPMessages, "lastXPMessage")
 
 	if (
 		fromMessage &&
@@ -44,16 +46,17 @@ module.exports.giveXP = (member, amount, fromMessage) => {
 	client.points.math(member.id, "+", amount, "points")
 
 	// levelling up
-	const currentLevel = Math.floor(0.2 * Math.sqrt(client.points.get(member.id, points))) // work out evaulate current level
+	const currentLevel = Math.floor(0.2 * Math.sqrt(client.points.get(member.id, "points"))) // work out evaulate current level
 	if (client.points.get(member.id, "level") != currentLevel) { // check if the level has changed
 		client.points.set(member.id, currentLevel, "level") // update the level
 
 		// notify user if they levelled up		
-		switch(client.points.get(member.id, notificationPreference)) {
+		switch(client.points.get(member.id, "notificationPreference")) {
 			case "server":
 				let messageToSend = `${member.toString()}, you just reached level **${currentLevel}**!`
-				if (currentLevel <= 5 && client.points.get(member.id, notificationPreference) == "server") messageToSend += `\n**Hint**: use ${prefix}notificationPreference to change how I tell you this, or disable it all together.` // hint for new users to change notification preference
-				client.channels.cache.get("749377732009525312").send(messageToSend)
+				if (currentLevel <= 5 && client.points.get(member.id, "notificationPreference") == "server") messageToSend += `\n**Hint**: use \`${prefix}notify\` to change how I tell you this, or disable it all together.` // hint for new users to change notification preference
+				// client.channels.cache.get("749377732009525312").send(messageToSend) // main server bot spam
+				client.channels.cache.get("725272235090378806").send(messageToSend) // testing server
 				break
 			case "dm":
 				member.user.send(`You just reached level **${currentLevel}** in **${member.guild.name}**!`)
@@ -65,6 +68,8 @@ module.exports.giveXP = (member, amount, fromMessage) => {
 		success: true
 	}
 }
+
+module.exports.queryXP = id => client.points.get(id)
 
 // give xp for messages sent
 client.on("message", message => {
