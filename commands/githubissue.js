@@ -18,13 +18,15 @@ module.exports = {
 			let body = message.content.split("\n")
 			body.splice(0,1)
 			hasArgs = false
-			if (body[body.length-1].startsWith("; ")) {
-				hasArgs = true
-				issueArgs = body[body.length-1]
-				body.splice(body.length-1, body.length)
+			if(body.length!=0) {
+				if (body[body.length-1].startsWith("; ")) {
+					hasArgs = true
+					issueArgs = body[body.length-1]
+					body.splice(body.length-1, body.length)
+				}
 			}
 			body = body.join("\n")
-			body = body + `\n\n> This issue was created by an automation. It was authored in Discord by ${message.author.tag}, in ${message.guild.name} #${message.channel.name}.`
+			body = body.concat(`\n\n> This issue was created by an automation. It was authored in Discord by ${message.author.tag}, in ${message.guild.name} #${message.channel.name}.`)
 
 			let title = message.content.split("\n")[0].split(" ")
 			title.splice(0,2)
