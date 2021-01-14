@@ -2,7 +2,7 @@ const { prefix, color } = require('../config.json');
 
 module.exports = {
     name: 'minecraftwiki',
-    aliases: ["mcwiki","wiki"],
+    aliases: ["mcwiki","wiki","w"],
     usage: "[query]",
     description: "Searches the Minecraft Wiki or gets a link to a particular page",
     availableTo: "@everyone",

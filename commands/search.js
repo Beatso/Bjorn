@@ -2,7 +2,7 @@ const { prefix, color } = require('../config.json');
 
 module.exports = {
     name: 'search',
-    aliases: ["google"],
+    aliases: ["google","s"],
     usage: "[query]",
     description: "Sends a link to a google search.",
     availableTo: "@everyone",
