@@ -10,8 +10,8 @@
   "author": "Beatso",
   "license": "MIT",
   "dependencies": {
-    "@octokit/core": "^3.2.4",
-    "@octokit/request": "^5.4.12",
+    "@octokit/core": "^3.2.5",
+    "@octokit/request": "^5.4.13",
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "jira-connector": "^3.1.0",
