@@ -226,7 +226,7 @@ client.on('message', async message => {
 		message.author.bot // author is a bot
 	) return message.react('⚠️') // let the user know it failed
 
-	message.guild.voice.connection.play(googleTTS.getAudioUrl(message.content)) // play
+	message.guild.voice.connection.play(googleTTS.getAudioUrl(`${message.member.nickname ? message.member.nickname : message.author.username} says ${message.cleanContent}`)) // play
 	message.react('✅') // let the user know it worked
 	
 })
