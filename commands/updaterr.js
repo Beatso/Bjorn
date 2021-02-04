@@ -77,11 +77,6 @@ module.exports = {
 					"inline": false
 				},
 				{
-					"name": "<:li_variated:769603795986415647> #variated-github",
-					"value": "GitHub feed for [Little Improvements: Variated](https://github.com/Beatso/LittleImprovementsVariated)",
-					"inline": false
-				},
-				{
 					"name": "<:grass_block:785928340539965460> #minecraft-news",
 					"value": "News & Articles from the blog at [minecraft.net](https://www.minecraft.net/)",
 					"inline": false
@@ -124,22 +119,22 @@ module.exports = {
             reactionMessage.react("🟣");
         })*/
 		const getRolesChannel = message.guild.channels.cache.get("740838518116319322")
-		getRolesChannel.messages.fetch("741544749235830796")
-			.then(msg => {
-				msg.edit({ embed: notificationEmbed })
-					.then((msg1) => {
-						msg1.react("⚫");
-					})
-					.catch(console.error);
-			});
-		// getRolesChannel.messages.fetch("769631662291550318")
+		// getRolesChannel.messages.fetch("741544749235830796")
 		// 	.then(msg => {
-		// 		msg.edit({ embed:accessEmbed })
+		// 		msg.edit({ embed: notificationEmbed })
 		// 			.then((msg1) => {
-		// 				// msg1.react("774985841516740618")
+		// 				msg1.react("⚫");
 		// 			})
 		// 			.catch(console.error);
 		// 	});
+		getRolesChannel.messages.fetch("769631662291550318")
+			.then(msg => {
+				msg.edit({ embed:accessEmbed })
+					.then((msg1) => {
+						// msg1.react("774985841516740618")
+					})
+					.catch(console.error);
+			});
 		// getRolesChannel.messages.fetch("789241641092775957")
 		// .then(msg => {
 		// 	msg.edit({ embed:pronounsEmbed })
