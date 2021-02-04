@@ -215,19 +215,15 @@ client.on("voiceStateUpdate", (oldState, newState) => {
 
 client.on('message', async message => {
 
-	console.log(message.channel.name.startsWith('tts'))
+	if (!message.channel.name.startsWith('tts')) return // not in tts text channel 
 
-	if (
-		!message.channel.name.startsWith('tts') || // not in tts text channel
-		message.author.bot || // author is a bot
-		message.member.voice.channelID == null // author is not in a vc in this server
-	) return
-
-	if (message.guild.me.voice.channelID == null) await message.member.voice.channel.join() // join the channel if not already in a channel
+	if (message.member.voice.channelID != null && message.guild.me.voice.channelID == null) await message.member.voice.channel.join() // join the channel if not already in a channel and the user is in a channel
 	
 	if (
 		message.guild.me.voice.channelID != message.member.voice.channelID || // the bot and member are in different channels
-		message.content.length > 100 // the message is over 100 chars
+		message.content.length > 100 || // the message is over 100 chars
+		message.member.voice.channelID == null || // author is not in a vc in this server
+		message.author.bot // author is a bot
 	) return message.react('⚠️') // let the user know it failed
 
 	message.guild.voice.connection.play(googleTTS.getAudioUrl(message.content)) // play
