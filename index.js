@@ -197,12 +197,12 @@ client.on("voiceStateUpdate", (oldState, newState) => {
 
 		if (leave) {
 			if (oldState.channelID == '757326822936543332') newState.member.roles.remove(oldState.guild.roles.cache.get(inPublicVCRoleID))	
-			if (oldState.channelID == '806889275173109770') newState.member.roles.remove(oldState.guild.roles.cache.get(inLockedVCRoleID))	
+			else if (oldState.channelID == '806889275173109770') newState.member.roles.remove(oldState.guild.roles.cache.get(inLockedVCRoleID))	
 		}
 	
 		if (join) {
 			if (newState.channelID == '757326822936543332') newState.member.roles.add(oldState.guild.roles.cache.get(inPublicVCRoleID))	
-			if (newState.channelID == '806889275173109770') newState.member.roles.add(oldState.guild.roles.cache.get(inLockedVCRoleID))
+			else if (newState.channelID == '806889275173109770') newState.member.roles.add(oldState.guild.roles.cache.get(inLockedVCRoleID))
 		}
 })
 
