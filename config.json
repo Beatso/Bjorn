@@ -8,5 +8,7 @@
 		"getRoles": "740838518116319322",
 		"offTopic": "755112378944979004"
 	},
-	"defaultCooldown": 3
+	"defaultCooldown": 3,
+	"inPublicVCRoleID": "779111805741957171",
+	"inLockedVCRoleID": "806888350199840838"
 }
