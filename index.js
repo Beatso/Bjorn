@@ -1,6 +1,7 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { prefix,channelIDs,defaultCooldown} = require('./config.json')
+const { prefix,channelIDs,defaultCooldown,inPublicVCRoleID,inLockedVCRoleID} = require('./config.json')
+const googleTTS = require('google-tts-api')
 const reactionRoleData = require("./reactionroles.json")
 require("dotenv").config()
 
@@ -194,15 +195,37 @@ client.on("voiceStateUpdate", (oldState, newState) => {
 	}
 	else return
 
-		const inVCRoleID = '779111805741957171'
-
-		if (leave && !join) {
-			newState.member.roles.remove(oldState.guild.roles.cache.get(inVCRoleID))	
+		if (leave) {
+			if (oldState.channelID == '757326822936543332') newState.member.roles.remove(oldState.guild.roles.cache.get(inPublicVCRoleID))	
+			if (oldState.channelID == '806889275173109770') newState.member.roles.remove(oldState.guild.roles.cache.get(inLockedVCRoleID))	
 		}
 	
 		if (join) {
-			newState.member.roles.add(newState.guild.roles.cache.get(inVCRoleID))	
+			if (newState.channelID == '757326822936543332') newState.member.roles.add(oldState.guild.roles.cache.get(inPublicVCRoleID))	
+			if (newState.channelID == '806889275173109770') newState.member.roles.add(oldState.guild.roles.cache.get(inLockedVCRoleID))
 		}
+})
+
+client.on('message', async message => {
+
+	console.log(message.channel.name.startsWith('tts'))
+
+	if (
+		!message.channel.name.startsWith('tts') || // not in tts text channel
+		message.author.bot || // author is a bot
+		message.member.voice.channelID == null // author is not in a vc in this server
+	) return
+
+	if (message.guild.me.voice.channelID == null) await message.member.voice.channel.join() // join the channel if not already in a channel
+	
+	if (
+		message.guild.me.voice.channelID != message.member.voice.channelID || // the bot and member are in different channels
+		message.content.length > 100 // the message is over 100 chars
+	) return message.react('⚠️') // let the user know it failed
+
+	message.guild.voice.connection.play(googleTTS.getAudioUrl(message.content)) // play
+	message.react('✅') // let the user know it worked
+	
 })
 
 client.login(process.env.discordtoken)
