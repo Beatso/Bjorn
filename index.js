@@ -176,4 +176,33 @@ client.on("message", message => {
 	}
 })
 
+// detect when a member joins or leaves a voice channel, and give them the role if applicable
+client.on("voiceStateUpdate", (oldState, newState) => {
+
+	if (oldState.member.user.bot) return
+
+	if (oldState.channelID!=null && newState.channelID==null) {
+		join = false
+		leave = true
+	}
+	else if (oldState.channelID==null && newState.channelID!=null) {
+		join = true
+		leave = false
+	} else if (oldState.channelID!=null && newState.channelID!=null && oldState.channelID!=newState.channelID) {
+		join = true
+		leave = true
+	}
+	else return
+
+		const inVCRoleID = '779111805741957171'
+
+		if (leave && !join) {
+			newState.member.roles.remove(oldState.guild.roles.cache.get(inVCRoleID))	
+		}
+	
+		if (join) {
+			newState.member.roles.add(newState.guild.roles.cache.get(inVCRoleID))	
+		}
+})
+
 client.login(process.env.discordtoken)
