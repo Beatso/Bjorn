@@ -11,12 +11,7 @@ module.exports = {
 			"fields": [
 				{
 					"name": ":green_circle:",
-					"value": "[Little Improvements: Variated](https://www.planetminecraft.com/texture-pack/little-improvements-variated/)",
-					"inline": true
-				},
-				{
-					"name": ":red_circle:",
-					"value": "[Little Improvements: Redstone](https://www.planetminecraft.com/texture-pack/little-improvements-redstone/)",
+					"value": "[New Data Packs](https://www.planetminecraft.com/member/beatso/submissions/data-packs/)",
 					"inline": true
 				},
 				{
@@ -53,7 +48,12 @@ module.exports = {
 					"name": ":black_circle:",
 					"value": "[Song of the Day](https://discord.com/channels/738126248194211960/789287836943122442)",
 					"inline": true
-				}
+				},
+				{
+					"name": ":red_circle:",
+					"value": "[MC Tool of the Day](https://discord.com/channels/738126248194211960/807017077512732672)",
+					"inline": true
+				},
 			]
 		}
 		const accessEmbed = {
@@ -119,22 +119,22 @@ module.exports = {
             reactionMessage.react("🟣");
         })*/
 		const getRolesChannel = message.guild.channels.cache.get("740838518116319322")
-		// getRolesChannel.messages.fetch("741544749235830796")
-		// 	.then(msg => {
-		// 		msg.edit({ embed: notificationEmbed })
-		// 			.then((msg1) => {
-		// 				msg1.react("⚫");
-		// 			})
-		// 			.catch(console.error);
-		// 	});
-		getRolesChannel.messages.fetch("769631662291550318")
+		getRolesChannel.messages.fetch("741544749235830796")
 			.then(msg => {
-				msg.edit({ embed:accessEmbed })
+				msg.edit({ embed: notificationEmbed })
 					.then((msg1) => {
-						// msg1.react("774985841516740618")
+						msg1.react("🔴");
 					})
 					.catch(console.error);
 			});
+		// getRolesChannel.messages.fetch("769631662291550318")
+		// 	.then(msg => {
+		// 		msg.edit({ embed:accessEmbed })
+		// 			.then((msg1) => {
+		// 				// msg1.react("774985841516740618")
+		// 			})
+		// 			.catch(console.error);
+		// 	});
 		// getRolesChannel.messages.fetch("789241641092775957")
 		// .then(msg => {
 		// 	msg.edit({ embed:pronounsEmbed })
