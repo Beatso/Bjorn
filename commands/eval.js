@@ -1,5 +1,7 @@
 // https://anidiots.guide/examples/making-an-eval-command
 
+const { client } = require('../index')
+
 const clean = text => {
 	if (typeof(text) === "string")
 		return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203))
