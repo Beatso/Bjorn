@@ -24,6 +24,9 @@ module.exports = {
 			if (typeof evaled !== "string")
 				evaled = require("util").inspect(evaled)
 
+			if (evaled.includes(client.token))
+				return message.channel.send('Token blocked!')
+
 			message.channel.send(clean(evaled), {code:"xl"})
 
 		} catch (err) {
