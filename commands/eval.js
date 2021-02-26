@@ -14,14 +14,19 @@ module.exports = {
 	description: 'Runs direct JS code.',
 	availableTo: "<@634776327299399721>",
 	aliases: [],
-	execute(message, args) {
+	async execute(message, args) {
 
 		if (message.author.id !== '634776327299399721') return message.channel.send('You don\'t have permission to do that!')
 
 		try {
 
+			const channel = message.channel
+			const fetchMsg = id => channel.messages.fetch(id)
+			const getMsg = id => channel.messages.cache.get(id)
+			const getChannel = id => message.guild.channels.cache.get(id)
+
 			const code = args.join(" ")
-			let evaled = eval(code)
+			let evaled = await eval(`(async () => {${code}})()`)
 
 			if (typeof evaled !== "string")
 				evaled = require("util").inspect(evaled)
