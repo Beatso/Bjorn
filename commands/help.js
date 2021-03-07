@@ -3,7 +3,7 @@ const { prefix, color } = require('../config.json')
 module.exports = {
 	name: "help",
 	usage: "<command>",
-	aliases: ["commands"],
+	aliases: ["commands", "hjalp"],
 	description: "Shows a list of commands, or info about a particular command.",
 	availableTo: "@everyone",
 	execute(message, args) {
