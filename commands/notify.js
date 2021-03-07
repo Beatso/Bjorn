@@ -10,7 +10,7 @@ module.exports = {
 	cooldown: 5,
 	execute(message, args) {
 
-		giveXP(message.author.id, 0, false)
+		giveXP(message.member, 0, false)
 
 		const currentPreference = ( client.points.get(message.author.id, "notificationPreference") || "server" ) // default to server if no preference
 		var changedPreference = false

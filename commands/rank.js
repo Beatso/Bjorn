@@ -15,7 +15,7 @@ module.exports = {
 		if (parsedMember.success) member = parsedMember.member
 		else member = message.member
 
-		giveXP(member.id, 0, false)
+		giveXP(member, 0, false)
 
 		const xp = queryXP(member.id)
 

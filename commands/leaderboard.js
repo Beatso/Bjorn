@@ -8,7 +8,7 @@ module.exports = {
 	aliases: ['lb'],
 	execute(message, args) {
 
-		giveXP(member.id, 0, false)
+		giveXP(message.member, 0, false)
 
 		const sortedRanks = sortRanks()
 		const top10 = sortedRanks.splice(0, 10)
