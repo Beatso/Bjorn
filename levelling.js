@@ -98,3 +98,12 @@ client.on("message", message => {
 })
 
 module.exports.sortRanks = () => client.points.array().sort((a, b) => b.points - a.points) // returns a sorted array of all points objects
+
+module.exports.cleanup = guild => { // remove points data from users not in guild
+	const toRemove = client.points.filter(data => 
+		!guild.members.cache.has(data.id) // user is not in guild
+	)
+	console.log(toRemove)
+	toRemove.forEach(data => client.points.delete(data.id))
+	return `Removed ${toRemove.size} members's points.`
+} // eval to clean up: `?eval require("../levelling.js").cleanup(message.guild)`
