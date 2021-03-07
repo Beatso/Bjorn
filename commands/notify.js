@@ -7,7 +7,7 @@ module.exports = {
 	description: "Changes your notification preference for when you level up.",
 	aliases: ["notification", "notificationpreference"],
 	availableTo: "@everyone",
-	cooldown: 5,
+	cooldown: 3,
 	execute(message, args) {
 
 		giveXP(message.member, 0, false)
