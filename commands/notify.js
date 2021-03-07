@@ -19,6 +19,7 @@ module.exports = {
 			args[0] &&
 			(
 				args[0].toLowerCase() == "server" ||
+				args[0].toLowerCase() == "server-no-ping" ||
 				args[0].toLowerCase() == "dm" ||
 				args[0].toLowerCase() == "none"
 			)
@@ -35,8 +36,10 @@ module.exports = {
 		
 		switch (client.points.get(message.author.id, "notificationPreference")) {
 			case "server":
-				messageToSend += "**Server**. You will be notified in <#749377732009525312>"
+				messageToSend += "**Server**. You will be notified in <#749377732009525312>, and be pinged"
 				break
+			case "server-no-ping":
+				messageToSend += "**Server (no ping)**. You will be notified in <#749377732009525312>, but not be pinged"
 			case "dm":
 				messageToSend += "**DM**. You will be notified in your Direct Messages"
 				break
@@ -45,7 +48,7 @@ module.exports = {
 				messageToSend += "**None**. You will not be notified"
 				break
 		}
-		messageToSend += ` when you level up.\nUse \`${prefix}${this.name} [server | dm | none]\` to change your preference.`
+		messageToSend += ` when you level up.\nUse \`${prefix}${this.name} [server | server-no-ping | dm | none]\` to change your preference.`
 		message.channel.send(messageToSend)
 		
 	}
