@@ -54,16 +54,18 @@ module.exports.giveXP = (member, amount, fromMessage) => {
 		client.points.set(member.id, currentLevel, "level") // update the level
 
 		// notify user if they levelled up		
-		switch(client.points.get(member.id, "notificationPreference")) {
-			case "server":
-				let messageToSend = `${member.toString()}, you just reached level **${currentLevel}**!`
-				if (currentLevel <= 5 && client.points.get(member.id, "notificationPreference") == "server") messageToSend += `\n**Hint**: use \`${prefix}notify\` to change how I tell you this, or disable it all together.` // hint for new users to change notification preference
-				// client.channels.cache.get("749377732009525312").send(messageToSend) // main server #bot-spam
-				client.channels.cache.get("725272235090378806").send(messageToSend) // testing server #general
-				break
-			case "dm":
-				member.user.send(`You just reached level **${currentLevel}** in **${member.guild.name}**!`)
-				break
+		if (currentLevel > 0) { // not if they reached level 0
+			switch(client.points.get(member.id, "notificationPreference")) {
+				case "server":
+					let messageToSend = `${member.toString()}, you just reached level **${currentLevel}**!`
+					if (currentLevel <= 5 && client.points.get(member.id, "notificationPreference") == "server") messageToSend += `\n**Hint**: use \`${prefix}notify\` to change how I tell you this, or disable it all together.` // hint for new users to change notification preference
+					// client.channels.cache.get("749377732009525312").send(messageToSend) // main server #bot-spam
+					client.channels.cache.get("725272235090378806").send(messageToSend) // testing server #general
+					break
+				case "dm":
+					member.user.send(`You just reached level **${currentLevel}** in **${member.guild.name}**!`)
+					break
+			}
 		}
 	}
 
@@ -93,7 +95,6 @@ client.on("message", message => {
 		) return
 
 	this.giveXP(message.member, randBetween(8, 12), true)
-	message.reply("given xp")
 
 })
 

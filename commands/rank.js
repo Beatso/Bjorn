@@ -17,10 +17,12 @@ module.exports = {
 
 		const xp = queryXP(member.id)
 
+		if (!xp) return message.channel.send(`No XP found for ${member.user.tag}.`)
+
 		message.channel.send({ embed: new MessageEmbed() 
 			.setColor(message.guild.me.displayHexColor)
 			.setTitle(`${member.nickname ? member.nickname : member.user.username}'s XP`)
-			.setAuthor(member.user.username, member.user.displayAvatarURL())
+			.setAuthor(member.user.tag, member.user.displayAvatarURL())
 			.addFields(
 				{
 					name: 'Points',
