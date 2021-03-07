@@ -6,9 +6,9 @@ client.points = new Enmap({name: "points"})
 
 const randBetween = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
-module.exports.giveXP = (member, amount, fromMessage) => {
+module.exports.getLevel = points =>  Math.floor(0.2 * Math.sqrt(points))
 
-	console.log(member)
+module.exports.giveXP = (member, amount, fromMessage) => {
 
 	if (member.user.bot)
 		return {
@@ -43,10 +43,12 @@ module.exports.giveXP = (member, amount, fromMessage) => {
 	) return
 
 	// add points
-	client.points.math(member.id, "+", amount, "points")
+	this.queryXP(member.id).points + amount < 0 // no negative xp!
+		? client.points.set(member.id, 0, "points") // set to 0
+		: client.points.math(member.id, "+", amount, "points") // subtract amount
 
 	// levelling up
-	const currentLevel = Math.floor(0.2 * Math.sqrt(client.points.get(member.id, "points"))) // work out evaulate current level
+	const currentLevel = this.getLevel(client.points.get(member.id, "points")) // work out current level
 	if (client.points.get(member.id, "level") != currentLevel) { // check if the level has changed
 		client.points.set(member.id, currentLevel, "level") // update the level
 
@@ -55,8 +57,8 @@ module.exports.giveXP = (member, amount, fromMessage) => {
 			case "server":
 				let messageToSend = `${member.toString()}, you just reached level **${currentLevel}**!`
 				if (currentLevel <= 5 && client.points.get(member.id, "notificationPreference") == "server") messageToSend += `\n**Hint**: use \`${prefix}notify\` to change how I tell you this, or disable it all together.` // hint for new users to change notification preference
-				// client.channels.cache.get("749377732009525312").send(messageToSend) // main server bot spam
-				client.channels.cache.get("725272235090378806").send(messageToSend) // testing server
+				// client.channels.cache.get("749377732009525312").send(messageToSend) // main server #bot-spam
+				client.channels.cache.get("725272235090378806").send(messageToSend) // testing server #general
 				break
 			case "dm":
 				member.user.send(`You just reached level **${currentLevel}** in **${member.guild.name}**!`)
