@@ -10,7 +10,7 @@ module.exports = {
 
 		giveXP(message.member, 0, false)
 
-		const sortedRanks = sortRanks()
+		const sortedRanks = sortRanks(message.guild)
 		const top10 = sortedRanks.splice(0, 10)
 		const authorInTop10 = top10.some(element => element.id == message.author.id)
 
@@ -23,7 +23,7 @@ module.exports = {
 
 		if (!authorInTop10) {
 			const authorXP = queryXP(message.author.id)
-			description += `\n**${sortRanks().findIndex(element => element.id == message.author.id) + 1}**: ${message.member.nickname ? `${message.member.nickname} (${message.member.user.username})` : message.member.user.username} - ${authorXP.points} points`
+			description += `\n**${sortRanks(message.guild).findIndex(element => element.id == message.author.id) + 1}**: ${message.member.nickname ? `${message.member.nickname} (${message.member.user.username})` : message.member.user.username} - ${authorXP.points} points`
 		}
 
 		message.channel.send({ embed:

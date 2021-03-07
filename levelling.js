@@ -101,7 +101,7 @@ client.on("message", message => {
 
 })
 
-module.exports.sortRanks = () => client.points.array().sort((a, b) => b.points - a.points) // returns a sorted array of all points objects
+module.exports.sortRanks = guild => client.points.filter(element => guild.members.cache.has(element.id)).array().sort((a, b) => b.points - a.points) // returns a sorted array of all points objects
 
 module.exports.cleanup = guild => { // remove points data from users not in guild
 	const toRemove = client.points.filter(data => 
