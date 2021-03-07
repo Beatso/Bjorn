@@ -1,5 +1,6 @@
 const {client} = require("../index.js")
 const {prefix} = require("../config.json")
+const { giveXP } = require("../levelling.js")
 
 module.exports = {
 	name: "notify",
@@ -8,6 +9,8 @@ module.exports = {
 	availableTo: "@everyone",
 	cooldown: 5,
 	execute(message, args) {
+
+		giveXP(message.author.id, 0, false)
 
 		const currentPreference = ( client.points.get(message.author.id, "notificationPreference") || "server" ) // default to server if no preference
 		var changedPreference = false

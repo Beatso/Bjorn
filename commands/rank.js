@@ -15,9 +15,9 @@ module.exports = {
 		if (parsedMember.success) member = parsedMember.member
 		else member = message.member
 
-		const xp = queryXP(member.id)
+		giveXP(member.id, 0, false)
 
-		if (!xp) return message.channel.send(`No XP found for ${member.user.tag}.`)
+		const xp = queryXP(member.id)
 
 		message.channel.send({ embed: new MessageEmbed() 
 			.setColor(message.guild.me.displayHexColor)
