@@ -120,27 +120,48 @@ client.on("messageReactionAdd", async (reaction, user) => {
 
 	// starboard
 	if (reaction.emoji.name=="⭐") {
+
 		const message = reaction.message
 		const reactionData = message.reactions.cache.get("⭐")
-		if (reactionData.count==5 && !reactionData.users.cache.has(client.user.id)) {
-			if (message.member.nickname==null) name = message.author.username
-			else name = `${message.member.nickname} (${message.author.username})`
+
+		if (
+			user.bot // ignore reactions from bots
+		) return 
+
+		if (user.id == message.author.id) reaction.remove() // remove reactions from message author
+
+		// add message to starboard
+		if (
+			reactionData.count == 5 && // the message has 5 reactions 
+			!reactionData.users.cache.has(client.user.id) // the bot hasn't reacted yet (to prevent messages going to starboard twice)
+		) {
+
 			message.react("⭐")
 			const embed = {
 				color: 15844367,
 				author: {
-					name: name,
+					name: message.member.nickname==null ? message.author.username : `${message.member.nickname} (${message.author.username})`,
 					icon_url: message.author.avatarURL()
 				},
 				description: message.content,
-				fields: [{
-					"name": "Original",
-					"value": `[Jump](${message.url})`
-				}],
-				footer: { text: "#"+message.channel.name }
+				fields: [
+					{
+						"name": "Original Message",
+						"value": `[Jump](${message.url})`,
+						"inline": true
+					},
+					{
+						"name": "Channel",
+						"value": message.channel.toString(),
+						"inline": true
+					}
+				],
+				footer: { text: message.id }
 			}
 			if (message.attachments.size!=0) embed.image = { url: message.attachments.entries().next().value[1].attachment }
 			client.channels.cache.get("759888269495894089").send({embed:embed})
+			require("./levelling.js").giveXP(message.author, 30, false) // give 30 xp for starboard
+
 		}
 	}
 })
@@ -232,3 +253,5 @@ client.on('message', async message => {
 })
 
 client.login(process.env.discordtoken)
+
+require("./levelling.js")
