@@ -16,7 +16,6 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "google-tts-api": "^2.0.1",
-    "enmap": "^5.8.2",
     "jira-connector": "^3.1.0",
     "node-opus": "^0.3.3",
     "opusscript": "0.0.7",
