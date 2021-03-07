@@ -63,10 +63,8 @@ module.exports.giveXP = (member, amount, fromMessage) => {
 					// client.channels.cache.get("725272235090378806").send(messageToSend) // testing server #general
 					break
 				case "server-no-ping":
-					let messageToSend = `**${member.user.username}**, you just reached level **${currentLevel}**!`
-					if (currentLevel <= 5 && client.points.get(member.id, "notificationPreference") == "server") 
-					client.channels.cache.get("749377732009525312").send(messageToSend) // main server #bot-spam
-					// client.channels.cache.get("725272235090378806").send(messageToSend) // testing server #general
+					client.channels.cache.get("749377732009525312").send( `**${member.user.username}**, you just reached level **${currentLevel}**!`) // main server #bot-spam
+					// client.channels.cache.get("725272235090378806").send( `**${member.user.username}**, you just reached level **${currentLevel}**!`) // testing server #general
 					break
 				case "dm":
 					member.user.send(`You just reached level **${currentLevel}** in **${member.guild.name}**!`)
