@@ -31,7 +31,8 @@ module.exports.giveXP = (member, amount, fromMessage) => {
 	client.points.ensure(member.id, {
 		points: 0,
 		level: 1,
-		notificationPreference: "server"
+		notificationPreference: "server",
+		id: member.id
 	})
 
 	if (!client.points.get(member.id, "lastXPMessage"))
@@ -95,3 +96,5 @@ client.on("message", message => {
 	message.reply("given xp")
 
 })
+
+module.exports.sortRanks = () => client.points.array().sort((a, b) => b.points - a.points) // returns a sorted array of all points objects
