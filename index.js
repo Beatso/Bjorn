@@ -160,7 +160,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 			}
 			if (message.attachments.size!=0) embed.image = { url: message.attachments.entries().next().value[1].attachment }
 			client.channels.cache.get("759888269495894089").send({embed:embed})
-			require("./levelling.js").giveXP(message.author, 30, false) // give 30 xp for starboard
+			require("./levelling.js").giveXP(message.member, 30, false) // give 30 xp for starboard
 
 		}
 	}
