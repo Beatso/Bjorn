@@ -6,7 +6,7 @@ module.exports = {
 	description: "Get's the users with the top XP.",
 	availableTo: "@everyone",
 	aliases: ['lb'],
-	async execute(message, args) {
+	execute(message, args) {
 
 		const sortedRanks = sortRanks()
 		const top10 = sortedRanks.splice(0, 10)
@@ -14,14 +14,9 @@ module.exports = {
 
 		let description = ''
 
-		await new Promise((resolve, reject) => {
-			top10.forEach((element, index, array) => {
-				message.guild.members.fetch(element.id)
-					.then(member => {
-						description += `**${index+1}**: ${member.nickname ? `${member.nickname} (${member.user.username})` : member.user.username} - ${element.points} points\n`
-						if (index === array.length -1) resolve()
-					})
-			})
+		top10.forEach((element, index) => {
+			const member = message.guild.members.cache.get(element.id)
+			description += `**${index+1}**: ${member.nickname ? `${member.nickname} (${member.user.username})` : member.user.username} - ${element.points} points\n`
 		})
 
 		if (!authorInTop10) {
