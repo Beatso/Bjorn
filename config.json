@@ -10,5 +10,13 @@
 	},
 	"defaultCooldown": 3,
 	"inPublicVCRoleID": "779111805741957171",
-	"inLockedVCRoleID": "806888350199840838"
+	"inLockedVCRoleID": "806888350199840838",
+	"blacklistedXPChannels": [
+		"749377732009525312",
+		"779112838852509758"
+	],
+	"blacklistedXPCategories": [
+		"789288464910254080"
+	],
+	"timeBetweenXPMessages": 60000
 }
