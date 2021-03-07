@@ -40,6 +40,7 @@ module.exports = {
 				break
 			case "server-no-ping":
 				messageToSend += "**Server (no ping)**. You will be notified in <#749377732009525312>, but not be pinged"
+				break
 			case "dm":
 				messageToSend += "**DM**. You will be notified in your Direct Messages"
 				break
