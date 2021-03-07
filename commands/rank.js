@@ -15,6 +15,7 @@ module.exports = {
 		if (parsedMember.success) member = parsedMember.member
 		else member = message.member
 
+		if (member.user.bot) return message.channel.send('Bots have no XP!')
 		giveXP(member, 0, false)
 
 		const xp = queryXP(member.id)
