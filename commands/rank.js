@@ -1,5 +1,5 @@
 const { parseMember } = require("../utils.js")
-const { queryXP, sortRanks } = require("../levelling.js")
+const { queryXP, sortRanks, giveXP } = require("../levelling.js")
 const { MessageEmbed } = require("discord.js")
 
 module.exports = {

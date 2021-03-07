@@ -1,4 +1,4 @@
-const { queryXP, sortRanks } = require("../levelling.js")
+const { queryXP, sortRanks, giveXP } = require("../levelling.js")
 const { MessageEmbed } = require("discord.js")
 
 module.exports = {
@@ -7,6 +7,8 @@ module.exports = {
 	availableTo: "@everyone",
 	aliases: ['lb'],
 	execute(message, args) {
+
+		giveXP(member.id, 0, false)
 
 		const sortedRanks = sortRanks()
 		const top10 = sortedRanks.splice(0, 10)
