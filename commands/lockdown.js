@@ -3,7 +3,7 @@ const {client} = require("../index.js")
 module.exports = {
 	name: 'lockdown',
 	description: "Makes the server read only.",
-	availableTo: "<&739379990415540267>", // moderator role id
+	availableTo: "<@&739379990415540267>", // moderator role id
 	aliases: ["lock", "serverlock"],
 	usage: "[optional reason]",
 	execute(message, args) {

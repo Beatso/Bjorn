@@ -1,6 +1,7 @@
 const fs = require('fs')
 const Discord = require('discord.js')
-const { prefix,channelIDs,defaultCooldown} = require('./config.json')
+const { prefix,channelIDs,defaultCooldown,inPublicVCRoleID,inLockedVCRoleID} = require('./config.json')
+const googleTTS = require('google-tts-api')
 const reactionRoleData = require("./reactionroles.json")
 require("dotenv").config()
 
@@ -88,13 +89,13 @@ client.on("message", message => {
 
 client.on('guildMemberAdd', member => {
 	client.channels.cache.get("740632604071690281").send(`<:join:781306255033368609> <@${member.id}> joined the server. \`${member.guild.memberCount}\``)
-	client.channels.cache.get("757300903819608146").setName(`Total Members: ${member.guild.memberCount}`)
+	client.channels.cache.get("740632604071690281").setTopic(`Total Members: ${member.guild.memberCount}`)
 	if (member.user.bot) member.roles.add(member.guild.roles.cache.find(role=>role.id=="750456891615871036")) // add bot role
 	else member.roles.add(member.guild.roles.cache.find(role=>role.id=="764786089445556244")) // add member role
 })
 client.on('guildMemberRemove', member => {
 	client.channels.cache.get("740632604071690281").send(`<:leave:781306268702343208> <@${member.id}> left the server. \`${member.guild.memberCount}\``)
-	client.channels.cache.get("757300903819608146").setName(`Total Members: ${member.guild.memberCount}`)
+	client.channels.cache.get("740632604071690281").setTopic(`Total Members: ${member.guild.memberCount}`)
 })
 
 
@@ -198,6 +199,60 @@ client.on("message", message => {
 	) {
 		message.delete().then(message => message.reply("don't send invite links!"))
 	}
+})
+
+// detect when a member joins or leaves a voice channel, and give them the role if applicable
+client.on("voiceStateUpdate", (oldState, newState) => {
+
+	if (oldState.member.user.bot) return
+
+	if (oldState.channelID!=null && newState.channelID==null) {
+		join = false
+		leave = true
+	}
+	else if (oldState.channelID==null && newState.channelID!=null) {
+		join = true
+		leave = false
+	} else if (oldState.channelID!=null && newState.channelID!=null && oldState.channelID!=newState.channelID) {
+		join = true
+		leave = true
+	}
+	else return
+
+	if (leave) {
+			
+		if (
+			newState.guild.me.voice.channelID != null &&
+			newState.guild.me.voice.channel.members.filter(member => !member.user.bot).size <= 1
+		) newState.guild.me.voice.channel.leave()
+
+		if (oldState.channelID == '757326822936543332') newState.member.roles.remove(oldState.guild.roles.cache.get(inPublicVCRoleID))	
+		else if (oldState.channelID == '806889275173109770') newState.member.roles.remove(oldState.guild.roles.cache.get(inLockedVCRoleID))
+
+	}
+
+	if (join) {
+		if (newState.channelID == '757326822936543332') newState.member.roles.add(oldState.guild.roles.cache.get(inPublicVCRoleID))	
+		else if (newState.channelID == '806889275173109770') newState.member.roles.add(oldState.guild.roles.cache.get(inLockedVCRoleID))
+	}
+})
+
+client.on('message', async message => {
+
+	if (!message.channel.name.startsWith('tts')) return // not in tts text channel 
+
+	if (message.member.voice.channelID != null && message.guild.me.voice.channelID == null) await message.member.voice.channel.join() // join the channel if not already in a channel and the user is in a channel
+	
+	if (
+		message.guild.me.voice.channelID != message.member.voice.channelID || // the bot and member are in different channels
+		message.content.length > 100 || // the message is over 100 chars
+		message.member.voice.channelID == null || // author is not in a vc in this server
+		message.author.bot // author is a bot
+	) return message.react('⚠️') // let the user know it failed
+
+	message.guild.voice.connection.play(googleTTS.getAudioUrl(`${message.member.nickname ? message.member.nickname : message.author.username} says ${message.cleanContent}`)) // play
+	message.react('✅') // let the user know it worked
+	
 })
 
 client.login(process.env.discordtoken)

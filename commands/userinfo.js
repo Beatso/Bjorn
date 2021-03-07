@@ -24,6 +24,10 @@ module.exports = {
 
 		const responseEmbed = {
 			"title": `User Info for ${user.tag}`,
+			'author': {
+				'icon_url': user.avatarURL(),
+				'name': user.username
+			},
 			"fields": [
 				{
 					"name": "Joined Discord",

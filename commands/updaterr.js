@@ -11,12 +11,7 @@ module.exports = {
 			"fields": [
 				{
 					"name": ":green_circle:",
-					"value": "[Little Improvements: Variated](https://www.planetminecraft.com/texture-pack/little-improvements-variated/)",
-					"inline": true
-				},
-				{
-					"name": ":red_circle:",
-					"value": "[Little Improvements: Redstone](https://www.planetminecraft.com/texture-pack/little-improvements-redstone/)",
+					"value": "[New Data Packs](https://www.planetminecraft.com/member/beatso/submissions/data-packs/)",
 					"inline": true
 				},
 				{
@@ -53,7 +48,12 @@ module.exports = {
 					"name": ":black_circle:",
 					"value": "[Song of the Day](https://discord.com/channels/738126248194211960/789287836943122442)",
 					"inline": true
-				}
+				},
+				{
+					"name": ":red_circle:",
+					"value": "[MC Tool of the Day](https://discord.com/channels/738126248194211960/807017077512732672)",
+					"inline": true
+				},
 			]
 		}
 		const accessEmbed = {
@@ -74,11 +74,6 @@ module.exports = {
 				{
 					"name": "<:li_custom:754742002704187453> #custom-github",
 					"value": "GitHub feed for [Little Improvements: Custom](https://github.com/LittleImprovementsCustom/LittleImprovementsCustom)",
-					"inline": false
-				},
-				{
-					"name": "<:li_variated:769603795986415647> #variated-github",
-					"value": "GitHub feed for [Little Improvements: Variated](https://github.com/Beatso/LittleImprovementsVariated)",
 					"inline": false
 				},
 				{
@@ -128,7 +123,7 @@ module.exports = {
 			.then(msg => {
 				msg.edit({ embed: notificationEmbed })
 					.then((msg1) => {
-						msg1.react("⚫");
+						msg1.react("🔴");
 					})
 					.catch(console.error);
 			});
