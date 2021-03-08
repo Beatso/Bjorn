@@ -37,7 +37,7 @@ module.exports = {
 				},
 				{
 					name: 'Rank',
-					value: sortRanks(messgae.guild).findIndex(element => element.id == member.id) + 1,
+					value: sortRanks(message.guild).findIndex(element => element.id == member.id) + 1,
 					inline: true
 				},
 				{
