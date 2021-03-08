@@ -94,7 +94,8 @@ client.on("message", message => {
 		)) ||
 		message.channel.type == "dm" || // message is in dms
 		blacklistedXPCategories.includes(message.channel.parentID) || // message is in blacklisted category
-		!( message.channel.guild.id == "738126248194211960" || message.channel.guild.id == "725272235090378803") // message is not in correct guild
+		!( message.channel.guild.id == "738126248194211960" || message.channel.guild.id == "725272235090378803") || // message is not in correct guild
+		message.system // message is a system message (e.g. join message)
 		) return
 
 	this.giveXP(message.member, randBetween(8, 12), true)
