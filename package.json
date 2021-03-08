@@ -16,10 +16,9 @@
     "discord.js": "^12.5.1",
     "dotenv": "^8.2.0",
     "enmap": "^5.8.4",
+    "ffmpeg-static": "^4.2.7",
     "google-tts-api": "^2.0.1",
     "jira-connector": "^3.1.0",
-    "node-opus": "^0.3.3",
-    "opusscript": "0.0.7",
     "pretty-ms": "^7.0.1",
     "request": "^2.88.2"
   }
