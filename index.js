@@ -220,7 +220,7 @@ client.on("voiceStateUpdate", (oldState, newState) => {
 			
 		if (
 			newState.guild.me.voice.channelID != null &&
-			newState.guild.me.voice.channel.members.filter(member => !member.user.bot).size <= 1
+			newState.guild.me.voice.channel.members.filter(member => !member.user.bot).size < 1
 		) newState.guild.me.voice.channel.leave()
 
 		if (oldState.channelID == '757326822936543332') newState.member.roles.remove(oldState.guild.roles.cache.get(inPublicVCRoleID))	
