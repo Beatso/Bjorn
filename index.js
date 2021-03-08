@@ -1,9 +1,9 @@
 const fs = require('fs')
 const Discord = require('discord.js')
 const { prefix,channelIDs,defaultCooldown,inPublicVCRoleID,inLockedVCRoleID} = require('./config.json')
-const googleTTS = require('google-tts-api')
 const reactionRoleData = require("./reactionroles.json")
 require("dotenv").config()
+const discordTTS = require("discord-tts")
 
 module.exports.githubtoken=process.env.githubtoken
 module.exports.beatsoghtoken=process.env.beatsoghtoken
@@ -247,7 +247,8 @@ client.on('message', async message => {
 		message.author.bot // author is a bot
 	) return message.react('⚠️') // let the user know it failed
 
-	message.guild.voice.connection.play(googleTTS.getAudioUrl(`${message.member.nickname ? message.member.nickname : message.author.username} says ${message.cleanContent}`)) // play
+	message.guild.voice.connection.play(discordTTS.getVoiceStream(`${message.member.nickname ? message.member.nickname : message.author.username} says ${message.cleanContent}`)) // play
+
 	message.react('✅') // let the user know it worked
 	
 })
