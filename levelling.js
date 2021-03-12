@@ -40,7 +40,7 @@ module.exports.giveXP = (member, amount, fromMessage) => {
 
 	if (
 		fromMessage &&
-		Date.now() - client.points.get(member.id, "lastXPMessage") < 60
+		Date.now() - client.points.get(member.id, "lastXPMessage") < timeBetweenXPMessages
 	) return
 
 	// add points
