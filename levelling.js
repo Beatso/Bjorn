@@ -40,13 +40,16 @@ module.exports.giveXP = (member, amount, fromMessage) => {
 
 	if (
 		fromMessage &&
-		Date.now() - client.points.get(member.id, "lastXPMessage") < timeBetweenXPMessages
+		(Date.now() - client.points.get(member.id, "lastXPMessage")) < timeBetweenXPMessages
 	) return
 
 	// add points
 	this.queryXP(member.id).points + amount < 0 // no negative xp!
 		? client.points.set(member.id, 0, "points") // set to 0
 		: client.points.math(member.id, "+", amount, "points") // subtract amount
+
+	if (fromMessage)
+		client.points.set(member.id, Date.now(), 'lastXPMessage')
 
 	// levelling up
 	const currentLevel = this.getLevel(client.points.get(member.id, "points")) // work out current level
@@ -96,7 +99,7 @@ client.on("message", message => {
 		blacklistedXPCategories.includes(message.channel.parentID) || // message is in blacklisted category
 		!( message.channel.guild.id == "738126248194211960" || message.channel.guild.id == "725272235090378803") || // message is not in correct guild
 		message.system // message is a system message (e.g. join message)
-		) return
+	) return
 
 	this.giveXP(message.member, randBetween(8, 12), true)
 
