@@ -9,7 +9,10 @@ module.exports = {
 
 		if (message.author.id !== '634776327299399721') return message.channel.send('You don\'t have permission to do that!')
 
-		exec('bash ~/Documents/discord-bots/pull_all.sh')
+		exec('bash ~/Documents/discord-bots/pull_all.sh', (error, stdout, stderr) => {
+			if (error) message.channel.send(`ERROR\`\`\`${stderr}\`\`\``)
+			else message.channel.send(`SUCCESS\`\`\`${stdout}\`\`\``)
+		})
 		
 	},
 }
