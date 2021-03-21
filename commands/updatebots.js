@@ -1,4 +1,4 @@
-const { exec } = require('child_process')
+const { exec } = require('shelljs')
 
 module.exports = {
 	name: 'updatebots',
@@ -9,7 +9,7 @@ module.exports = {
 
 		if (message.author.id !== '634776327299399721') return message.channel.send('You don\'t have permission to do that!')
 
-		exec('bash pull_all.sh', { cwd: '../../' })
+		exec('bash ../../pull_all.sh')
 		
 	},
 }
