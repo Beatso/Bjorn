@@ -1,4 +1,4 @@
-const { exec } = require('shelljs')
+const { exec } = require('child_process')
 
 module.exports = {
 	name: 'updatebots',
