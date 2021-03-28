@@ -34,6 +34,7 @@ const tryChat = async message => {
 }
 
 client.on('message', message => {
+	if (message.author.bot) return
 	if (!message.content.startsWith(prefix)) return tryChat(message)
 
 	const args = message.content.slice(prefix.length).split(/ +/)
