@@ -4,6 +4,7 @@ const { prefix,channelIDs,defaultCooldown,inPublicVCRoleID,inLockedVCRoleID} = r
 const reactionRoleData = require("./reactionroles.json")
 require("dotenv").config()
 const discordTTS = require("discord-tts")
+const fetch = require('node-fetch')
 
 module.exports.githubtoken=process.env.githubtoken
 module.exports.beatsoghtoken=process.env.beatsoghtoken
@@ -25,8 +26,15 @@ client.once('ready', () => {
 	client.user.setActivity("h",{type:"WATCHING"})
 })
 
+const tryChat = async message => {
+	const req = await fetch(`https://api.monkedev.com/fun/chat?msg=${encodeURIComponent(message.content)}`)
+		.then(res => res.json())
+		.then(json => json)
+	return message.reply(req.response, { allowedMentions: { repliedUser: false } })
+}
+
 client.on('message', message => {
-	if (!message.content.startsWith(prefix)) return
+	if (!message.content.startsWith(prefix)) return tryChat(message)
 
 	const args = message.content.slice(prefix.length).split(/ +/)
 	const commandName = args.shift().toLowerCase()
@@ -34,7 +42,7 @@ client.on('message', message => {
 	const command = client.commands.get(commandName)
 		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 		
-	if (!command) return
+	if (!command) return tryChat(message)
 	
 
 
