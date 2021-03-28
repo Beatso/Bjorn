@@ -23,7 +23,7 @@ for (const file of commandFiles) {
 
 client.once('ready', () => {
 	console.log('bot running')
-	client.user.setActivity("h",{type:"WATCHING"})
+	client.user.setActivity("dms",{type:"WATCHING"})
 })
 
 const tryChat = async message => {
