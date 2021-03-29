@@ -1,7 +1,8 @@
 const axios = require('axios')
 const { color } = require('../config.json')
 
-randElement = array => array[Math.floor((Math.random()*array.length))]
+const randElement = array => array[Math.floor((Math.random()*array.length))]
+const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
 module.exports = {
 	name: 'meme',
@@ -12,7 +13,7 @@ module.exports = {
 		
 		try {
 
-			const post = (await axios.get(`https://api.reddit.com/r/${randElement(['memes', 'dankmemes'])}/${randElement(['hot', 'rising'])}?limit=1`)).data.data.children[0].data
+			const post = (await axios.get(`https://api.reddit.com/r/${randElement(['memes', 'dankmemes'])}/${randElement(['hot', 'rising'])}?limit=50`)).data.data.children[randInt(0,24)].data
 
 			if (post.over_18 && !message.channel.nsfw) return message.channel.send('Could not send meme since it was NSFW.')
 	
