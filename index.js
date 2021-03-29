@@ -27,7 +27,7 @@ client.once('ready', () => {
 })
 
 const tryChat = async message => {
-	const req = await fetch(`https://api.monkedev.com/fun/chat?msg=${encodeURIComponent(message.content)}`)
+	const req = await fetch(`https://api.monkedev.com/fun/chat?msg=${encodeURIComponent(message.content)}&uid=${message.author.id}${process.env.monkedevkey ? `&key=${process.env.monkedevkey}` : ''}`)
 		.then(res => res.json())
 		.then(json => json)
 	return message.reply(req.response, { allowedMentions: { repliedUser: false } })
