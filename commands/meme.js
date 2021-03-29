@@ -25,6 +25,7 @@ module.exports = {
 
 	
 			if (post.over_18 && !message.channel.nsfw) return module.exports.execute(message, args)
+			if (post.url.includes('v.redd')) return module.exports.execute(message, args)
 			message.channel.send({ embed: {
 				title: post.title,
 				url: `https://redd.it/${post.id}`,
