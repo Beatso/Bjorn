@@ -1,4 +1,5 @@
 const axios = require('axios')
+const { color } = require('../config.json')
 
 randElement = array => array[Math.floor((Math.random()*array.length))]
 
@@ -22,10 +23,12 @@ module.exports = {
 				footer: {
 					text: `${post.ups} points on r/${post.subreddit}`,
 					icon_url: (await axios.get(`https://api.reddit.com/r/${post.subreddit}/about`)).data.data.icon_img
-				}
+				},
+				color: color
 			}})
 
-		} catch {
+		} catch (err) {
+			console.error(err)
 			return message.channel.send('There was an error trying to send a meme.')
 		}
 
