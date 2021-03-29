@@ -4,6 +4,14 @@ const { color } = require('../config.json')
 const randElement = array => array[Math.floor((Math.random()*array.length))]
 const randInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
+const suffixes = ["", "k", "m", "b","t"]
+const readableNumber = value => {
+    const suffixNum = Math.floor((""+value).length/3)
+    let shortValue = parseFloat((suffixNum != 0 ? (value / Math.pow(1000,suffixNum)) : value).toPrecision(2))
+    if (shortValue % 1 != 0) shortValue = shortValue.toFixed(1)
+    return shortValue+suffixes[suffixNum]
+}
+
 module.exports = {
 	name: 'meme',
 	description: "Gets a random meme from reddit.",
@@ -22,7 +30,7 @@ module.exports = {
 				url: `https://redd.it/${post.id}`,
 				image: { url: post.url },
 				footer: {
-					text: `${post.ups} points on r/${post.subreddit}`,
+					text: `${readableNumber(post.ups)} points on r/${post.subreddit}`,
 					icon_url: (await axios.get(`https://api.reddit.com/r/${post.subreddit}/about`)).data.data.icon_img
 				},
 				color: color
