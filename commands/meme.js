@@ -23,8 +23,8 @@ module.exports = {
 
 			const post = (await axios.get(`https://api.reddit.com/r/${randElement(['memes', 'dankmemes'])}/${randElement(['hot', 'rising'])}?limit=50`)).data.data.children[randInt(0,24)].data
 
-			if (post.over_18 && !message.channel.nsfw) return message.channel.send('Could not send meme since it was NSFW.')
 	
+			if (post.over_18 && !message.channel.nsfw) return module.exports.execute(message, args)
 			message.channel.send({ embed: {
 				title: post.title,
 				url: `https://redd.it/${post.id}`,
