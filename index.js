@@ -245,7 +245,7 @@ client.on("voiceStateUpdate", (oldState, newState) => {
 
 client.on('message', async message => {
 
-	if (!message.channel.name.startsWith('tts')) return // not in tts text channel 
+	if (message.guild && !message.channel.name.startsWith('tts')) return // not in tts text channel 
 
 	if (message.member.voice.channelID != null && message.guild.me.voice.channelID == null) await message.member.voice.channel.join() // join the channel if not already in a channel and the user is in a channel
 	
