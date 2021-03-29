@@ -4,7 +4,7 @@ const { prefix,channelIDs,defaultCooldown,inPublicVCRoleID,inLockedVCRoleID} = r
 const reactionRoleData = require("./reactionroles.json")
 require("dotenv").config()
 const discordTTS = require("discord-tts")
-const fetch = require('node-fetch')
+const axios = require('axios').default
 
 module.exports.githubtoken=process.env.githubtoken
 module.exports.beatsoghtoken=process.env.beatsoghtoken
@@ -27,11 +27,13 @@ client.once('ready', () => {
 })
 
 const tryChat = async message => {
-	if (message.guild) return
-	const req = await fetch(`https://api.monkedev.com/fun/chat?msg=${encodeURIComponent(message.content)}&uid=${message.author.id}${process.env.monkedevkey ? `&key=${process.env.monkedevkey}` : ''}`)
-		.then(res => res.json())
-		.then(json => json)
-	return message.reply(req.response, { allowedMentions: { repliedUser: false } })
+	if (!message.guild)
+		return message.reply(
+			(await axios.get(`https://api.monkedev.com/fun/chat?msg=${encodeURIComponent(message.content)}&uid=${message.author.id}${
+				process.env.monkedevkey ? `&key=${process.env.monkedevkey}` : ''
+			}`)).data.response,
+			{ allowedMentions: { repliedUser: false } }
+		)
 }
 
 client.on('message', message => {
