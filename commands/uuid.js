@@ -14,7 +14,7 @@ module.exports = {
 		const version = args[0] || 4;
 		const id = version == '1'
 				? uuid.v1()
-				: uuid.v4
+				: uuid.v4()
 
 		return message.channel.send(
 			new MessageEmbed()
