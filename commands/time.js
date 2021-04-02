@@ -1,5 +1,3 @@
-const weather = require('weather-js');
-
 module.exports = {
 	name: 'time',
 	aliases: [ 'clock', 'worldclock', 'worldtime' ],
