@@ -1,6 +1,7 @@
 const config = require('../config.json');
 const deaths = require('../deaths.json');
 const { MessageEmbed } = require('discord.js')
+const { parseMember } = require('../utils')
 
 module.exports = {
 	name: 'kill',
@@ -9,7 +10,6 @@ module.exports = {
 	usage: `[user] [item]`,
 	async execute(message, args) {
 		const embed = new MessageEmbed().setColor(config.color);
-		const target = message.mentions.users.first();
 		if (!args[0]) {
 			embed.setTitle(
 				deaths['1user'][Math.round(Math.random() * deaths['1user'].length)].replace(
@@ -18,11 +18,13 @@ module.exports = {
 				)
 			);
 		} else {
-			if (!target) return message.channel.send(`Could not find user ${args[0]}`)
+			const target = parseMember(args[0], message.guild)
+			console.log(target)
+			if (!target.success) return message.channel.send(`Could not find user ${args[0]}`)
 			if (args[0] && !args[1]) {
 				embed.setTitle(
 					deaths['2users'][Math.round(Math.random() * deaths['2users'].length)]
-						.replace('{user1}', target.username)
+						.replace('{user1}', target.member.user.username)
 						.replace('{user2}', message.author.username)
 				);
 			} else {
@@ -30,7 +32,7 @@ module.exports = {
 				const item = args.join(' ');
 				embed.setTitle(
 					deaths['1item'][Math.round(Math.random() * deaths['1item'].length)]
-						.replace('{user1}', target.username)
+						.replace('{user1}', target.member.user.username)
 						.replace('{user2}', message.author.username)
 						.replace('{item1}', item)
 				);
