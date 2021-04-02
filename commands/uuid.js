@@ -1,17 +1,26 @@
-const request = require("request")
+const config = require('../config.json');
+const uuid = require('uuid');
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
-    name: "uuid",
-	description: "Gets the UUID of a Minecraft username.",
-	aliases: ["getuuid", "mcuuid"],
-    usage: "[username]",
-    availableTo: "@everyone",
-	execute(message, args) {
-		if (args[0] == undefined) message.channel.send("You need to specify a username!")
-		request.post("https://api.mojang.com/profiles/minecraft", { json: true, body: args[0] }, (err, res, body) => {
-			if (body.error) message.channel.send("There was an error trying to do that :c")
-			else if (body[0] == undefined) message.channel.send(`Could not find a user with the name ${args[0]}.`)
-			else message.channel.send(`The UUID of player ${body[0].name} is \`${body[0].id}\`.`)
-		})
-    },
-}
+	name: 'uuid',
+	description: 'Generates an uuid',
+	usage: `uuid [type]`,
+	async execute(message, args) {
+		if (args[0] != '1' && args[0] != '4')
+			return message.channel.send(
+				'You must specify a valid version for the uuid.\nValid Versions: `1`, `4`'
+			)
+		const version = args[0] || 4;
+		const id = version == '1'
+				? uuid.v1()
+				: uuid.v4
+
+		return message.channel.send(
+			new MessageEmbed()
+				.setColor(config.color)
+				.setTitle(`UUID v${version}`)
+				.setDescription(`\`${id}\``)
+		);
+	}
+};
