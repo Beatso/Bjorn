@@ -1,14 +1,14 @@
-const config = require('@config');
-const deaths = require('../../deaths.json');
-const sendError = require('@functions/sendError');
+const config = require('../config.json');
+const deaths = require('../deaths.json');
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
 	name: 'kill',
 	description: 'Kills a user',
 	aliases: [ 'death', 'die' ],
-	usage: `kill [user] [item]`,
-	async execute(client, message, args, Discord) {
-		const embed = new Discord.MessageEmbed().setColor(config.colors.defualt);
+	usage: `[user] [item]`,
+	async execute(message, args) {
+		const embed = new MessageEmbed().setColor(config.color);
 		const target = message.mentions.users.first();
 		if (!args[0]) {
 			embed.setTitle(
@@ -18,7 +18,7 @@ module.exports = {
 				)
 			);
 		} else {
-			if (!target) return sendError(message, `Could not find user ${args[0]}`, 'Invalid User');
+			if (!target) return message.channel.send(`Could not find user ${args[0]}`)
 			if (args[0] && !args[1]) {
 				embed.setTitle(
 					deaths['2users'][Math.round(Math.random() * deaths['2users'].length)]

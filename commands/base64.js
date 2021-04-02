@@ -1,9 +1,9 @@
 module.exports = {
 	name: 'base64',
 	description: 'Encodes and Decodes base64',
-	usage: `base64 <encode/decode> <text>`,
-	execute(client, message, args, Discord, cmd) {
-		// if (!args[0]) return message.reply('You must specify encoding or decoding.');
+	usage: `<encode | decode> <text>`,
+	execute(message, args) {
+		if (!args[0]) return message.reply('You must specify encoding or decoding.');
 		if (!(args[0] == 'encode' || args[0] == 'decode'))
 			return message.reply('You must specify encoding or decoding.');
 		if (!args[1]) return message.reply(`You must specify text to ${args[0]}.`);
@@ -34,10 +34,10 @@ module.exports = {
 		try {
 			if (args[0] == 'encode') {
 				let res = encode(text);
-				message.channel.send(res.base64);
+				message.channel.send(res.base64, { disableMentions: 'all' });
 			} else {
 				let res = decode(text);
-				message.channel.send(res.base64);
+				message.channel.send(res.base64, { disableMentions: 'all' });
 			}
 		} catch (err) {
 			message.reply(`There was an error ${args[0].substring(0, args[0].length - 1)}ing that.`);
