@@ -118,11 +118,10 @@ client.on("messageReactionAdd", async (reaction, user) => {
 
 	if (
 		reaction.message.channel.id == channelIDs.getRoles &&
-		reactionRoleData.map(x=>x.emoji).indexOf(reaction.emoji.name) != -1
-	) {
-		const data = reactionRoleData[emoji]
-		reaction.message.guild.members.cache.get(user.id).roles.add(data.role)
-	}
+		reactionRoleData.some(e => e.emoji == reaction.emoji.name) &&
+		!reaction.user.bot
+	)
+		reaction.message.guild.members.cache.get(user.id).roles.add(reactionRoleData.find(e => e.emoji == reaction.emoji.name).role)
 
 
 	// starboard
@@ -179,11 +178,10 @@ client.on("messageReactionRemove", async (reaction, user) => {
 
 	if (
 		reaction.message.channel.id == channelIDs.getRoles &&
-		reactionRoleData.map(x=>x.emoji).indexOf(reaction.emoji.name) != -1
-	) {
-		const data = reactionRoleData[emoji]
-		reaction.message.guild.members.cache.get(user.id).roles.remove(data.role)
-	}
+		reactionRoleData.some(e => e.emoji == reaction.emoji.name) &&
+		!reaction.user.bot
+	)
+		reaction.message.guild.members.cache.get(user.id).roles.remove(reactionRoleData.find(e => e.emoji == reaction.emoji.name).role)
 
 })
 
