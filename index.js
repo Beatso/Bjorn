@@ -114,19 +114,14 @@ client.on('guildMemberRemove', member => {
 client.on("messageReactionAdd", async (reaction, user) => {
 	if (reaction.message.partial) await reaction.message.fetch()
 	if (reaction.partial) await reaction.fetch()
-	if  (!reaction.message.guild) return
+	if (!reaction.message.guild) return
 
-	if (reaction.message.channel.id == channelIDs.getRoles) {
-
-		const name = reactionRoleData.map(x=>x.name).indexOf(reaction.emoji.name)
-		const id = reactionRoleData.map(x=>x.id).indexOf(reaction.emoji.id)
-
-		if ( name != -1 || id != -1 ) {
-			if ( name != -1 ) var data = reactionRoleData[name]
-			else var data = reactionRoleData[id]
-			if ( reaction.message.id == data.messageID ) await reaction.message.guild.members.cache.get(user.id).roles.add(data.role)
-		}
-
+	if (
+		reaction.message.channel.id == channelIDs.getRoles &&
+		reactionRoleData.map(x=>x.emoji).indexOf(reaction.emoji.name) != -1
+	) {
+		const data = reactionRoleData[emoji]
+		reaction.message.guild.members.cache.get(user.id).roles.add(data.role)
 	}
 
 
@@ -181,19 +176,13 @@ client.on("messageReactionAdd", async (reaction, user) => {
 client.on("messageReactionRemove", async (reaction, user) => {
 	if (reaction.message.partial) await reaction.message.fetch()
 	if (reaction.partial) await reaction.fetch()
-	if  (!reaction.message.guild) return
 
-	if (reaction.message.channel.id == channelIDs.getRoles) {
-
-		const name = reactionRoleData.map(x=>x.name).indexOf(reaction.emoji.name)
-		const id = reactionRoleData.map(x=>x.id).indexOf(reaction.emoji.id)
-
-		if ( name != -1 || id != -1 ) {
-			if ( name != -1 ) var data = reactionRoleData[name]
-			else var data = reactionRoleData[id]
-			if ( reaction.message.id == data.messageID ) await reaction.message.guild.members.cache.get(user.id).roles.remove(data.role)
-		}
-
+	if (
+		reaction.message.channel.id == channelIDs.getRoles &&
+		reactionRoleData.map(x=>x.emoji).indexOf(reaction.emoji.name) != -1
+	) {
+		const data = reactionRoleData[emoji]
+		reaction.message.guild.members.cache.get(user.id).roles.remove(data.role)
 	}
 
 })
