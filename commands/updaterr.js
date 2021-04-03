@@ -6,6 +6,8 @@ module.exports = {
     availableTo: "<@634776327299399721>",
         async execute(message, args) {
 
+			try {
+
                 if (message.author.id != "634776327299399721") return
 
                 let notificationDesc = 'React to this message to get roles to be pinged for announcements and events.'
@@ -43,6 +45,10 @@ module.exports = {
 
                 const pronounsMessage = (await getRolesChannel.send({embed: pronounsEmbed}))
                 reactionRoleData.filter(e => e.type == "pronouns").forEach(async e => {await pronounsMessage.react(e.emoji)})
+			
+			} catch (error) {
+				console.error(error)
+			}
 
         },
 };
