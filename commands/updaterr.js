@@ -37,7 +37,7 @@ module.exports = {
 
                 const getRolesChannel = (await message.guild.channels.cache.get("740838518116319322"))
 
-                const notificationMessage = (await getRolesChannel.messages.fetch("741544749235830796"))
+                const notificationMessage = (await getRolesChannel.messages.fetch("828042541194674196"))
 				await notificationMessage.edit({embed: notificationEmbed})
                 reactionRoleData.filter(e => e.type == "notification").forEach(async e => {await notificationMessage.react(e.emoji)})
 
