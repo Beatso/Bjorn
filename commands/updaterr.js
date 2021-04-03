@@ -37,14 +37,15 @@ module.exports = {
 
                 const getRolesChannel = (await message.guild.channels.cache.get("740838518116319322"))
 
-                const notificationMessage = (await getRolesChannel.send({embed: notificationEmbed}))
+                const notificationMessage = (await getRolesChannel.messages.fetch("741544749235830796"))
+				await notificationMessage.edit({embed: notificationEmbed})
                 reactionRoleData.filter(e => e.type == "notification").forEach(async e => {await notificationMessage.react(e.emoji)})
 
-                const accessMessage = (await getRolesChannel.send({embed: accessEmbed}))
-                reactionRoleData.filter(e => e.type == "access").forEach(async e => {await accessMessage.react(e.emoji)})
+                // const accessMessage = (await getRolesChannel.send({embed: accessEmbed}))
+                // reactionRoleData.filter(e => e.type == "access").forEach(async e => {await accessMessage.react(e.emoji)})
 
-                const pronounsMessage = (await getRolesChannel.send({embed: pronounsEmbed}))
-                reactionRoleData.filter(e => e.type == "pronoun").forEach(async e => {await pronounsMessage.react(e.emoji)})
+                // const pronounsMessage = (await getRolesChannel.send({embed: pronounsEmbed}))
+                // reactionRoleData.filter(e => e.type == "pronoun").forEach(async e => {await pronounsMessage.react(e.emoji)})
 			
 			} catch (error) {
 				console.error(error)
