@@ -119,7 +119,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 	if (
 		reaction.message.channel.id == channelIDs.getRoles &&
 		reactionRoleData.some(e => e.emoji == reaction.emoji.name) &&
-		!reaction.user.bot
+		!user.bot
 	)
 		reaction.message.guild.members.cache.get(user.id).roles.add(reactionRoleData.find(e => e.emoji == reaction.emoji.name).role)
 
@@ -179,7 +179,7 @@ client.on("messageReactionRemove", async (reaction, user) => {
 	if (
 		reaction.message.channel.id == channelIDs.getRoles &&
 		reactionRoleData.some(e => e.emoji == reaction.emoji.name) &&
-		!reaction.user.bot
+		!user.bot
 	)
 		reaction.message.guild.members.cache.get(user.id).roles.remove(reactionRoleData.find(e => e.emoji == reaction.emoji.name).role)
 
