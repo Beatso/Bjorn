@@ -44,7 +44,7 @@ module.exports = {
                 reactionRoleData.filter(e => e.type == "access").forEach(async e => {await accessMessage.react(e.emoji)})
 
                 const pronounsMessage = (await getRolesChannel.send({embed: pronounsEmbed}))
-                reactionRoleData.filter(e => e.type == "pronouns").forEach(async e => {await pronounsMessage.react(e.emoji)})
+                reactionRoleData.filter(e => e.type == "pronoun").forEach(async e => {await pronounsMessage.react(e.emoji)})
 			
 			} catch (error) {
 				console.error(error)
