@@ -25,7 +25,7 @@ module.exports = {
                         "color": message.guild.me.displayHexColor
                 }
                 const accessEmbed = {
-                        "title": "👁‍🗨 Access Roles",
+                        "title": "🔓 Access Roles",
                         "description": accessDesc,
                         "color": message.guild.me.displayHexColor
                 }
