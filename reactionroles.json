@@ -17,7 +17,8 @@
 	{
 		"emoji": "🖱️",
 		"role": "750442200302747669",
-		"type": "notification"
+		"type": "notification",
+		"break": true
 	},
 	{
 		"emoji": "❓",

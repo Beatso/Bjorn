@@ -10,14 +10,14 @@ module.exports = {
 
                 if (message.author.id != "634776327299399721") return
 
-                let notificationDesc = 'React to this message to get roles to be pinged for announcements and events.'
-                reactionRoleData.filter(e => e.type == "notification").forEach(e => notificationDesc += `\n${e.emoji} <@&${e.role}>`)
+                let notificationDesc = 'React to this message to get roles to be pinged for announcements and events.\n'
+                reactionRoleData.filter(e => e.type == "notification").forEach(e => notificationDesc += `\n${e.emoji} <@&${e.role}>${e.break ? '\n' : ''}`)
 
-                let accessDesc = 'React to this message to get roles to see certain channels.'
-                reactionRoleData.filter(e => e.type == "access").forEach(e => accessDesc += `\n${e.emoji} <@&${e.role}>`)
+                let accessDesc = 'React to this message to get roles to see certain channels.\n'
+                reactionRoleData.filter(e => e.type == "access").forEach(e => accessDesc += `\n${e.emoji} <@&${e.role}>${e.break ? '\n' : ''}`)
 
-                let pronounDesc = 'React to this message to get roles to show people your pronouns.'
-                reactionRoleData.filter(e => e.type == "pronoun").forEach(e => pronounDesc += `\n${e.emoji} <@&${e.role}>`)
+                let pronounDesc = 'React to this message to get roles to show people your pronouns.\n'
+                reactionRoleData.filter(e => e.type == "pronoun").forEach(e => pronounDesc += `\n${e.emoji} <@&${e.role}>${e.break ? '\n' : ''}`)
 
                 const notificationEmbed = {
                         "title": "🔔 Notification Roles",
