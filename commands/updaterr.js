@@ -10,14 +10,14 @@ module.exports = {
 
 
                 console.log("idhcisdfh")
-                let notificationDesc = ''
-                reactionRoleData.filter(e => e.type == "notification").forEach(e => notificationDesc += `${e.emoji} <@${e.role}>`)
+                let notificationDesc = 'React to this message to get roles to be pinged for announcements and events.'
+                reactionRoleData.filter(e => e.type == "notification").forEach(e => notificationDesc += `\n${e.emoji} <@${e.role}>`)
 
-                let accessDesc = ''
-                reactionRoleData.filter(e => e.type == "access").forEach(e => accessDesc += `${e.emoji} <@${e.role}>`)
+                let accessDesc = 'React to this message to get roles to see certain channels.'
+                reactionRoleData.filter(e => e.type == "access").forEach(e => accessDesc += `\n${e.emoji} <@${e.role}>`)
 
-                let pronounDesc = ''
-                reactionRoleData.filter(e => e.type == "pronoun").forEach(e => pronounDesc += `${e.emoji} <@${e.role}>`)
+                let pronounDesc = 'React to this message to get roles to show people your pronouns.'
+                reactionRoleData.filter(e => e.type == "pronoun").forEach(e => pronounDesc += `\n${e.emoji} <@${e.role}>`)
 
                 const notificationEmbed = {
                         "title": "🔔 Notification Roles",
@@ -25,12 +25,12 @@ module.exports = {
                         "color": message.guild.me.displayHexColor
                 }
                 const accessEmbed = {
-                        "title": "👁‍🗨 Get Access Roles",
+                        "title": "👁‍🗨 Access Roles",
                         "description": accessDesc,
                         "color": message.guild.me.displayHexColor
                 }
                 const pronounsEmbed = {
-                        "title": "🙋 Get Pronoun Roles",
+                        "title": "🙋 Pronoun Roles",
                         "description": pronounDesc,
                         "color": message.guild.me.displayHexColor
                 }
