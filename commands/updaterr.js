@@ -33,16 +33,16 @@ module.exports = {
 			"color": message.guild.me.displayHexColor
 		}
 
-		const getRolesChannel = await message.guild.channels.cache.get("740838518116319322")
+		const getRolesChannel = (await message.guild.channels.cache.get("740838518116319322"))
 
-		const notificationMessage = await getRolesChannel.send(notificationEmbed)
-		reactionRoleData.filter(e => e.type == "notification").forEach(e => await notificationMessage.react(e.emoji))
+		const notificationMessage = (await getRolesChannel.send(notificationEmbed))
+		reactionRoleData.filter(e => e.type == "notification").forEach(e => (await notificationMessage.react(e.emoji)))
 		
-		const accessMessage = await getRolesChannel.send(accessEmbed)
-		reactionRoleData.filter(e => e.type == "access").forEach(e => await accessMessage.react(e.emoji))
+		const accessMessage = (await getRolesChannel.send(accessEmbed))
+		reactionRoleData.filter(e => e.type == "access").forEach(e => (await accessMessage.react(e.emoji)))
 
-		const pronounsMessage = await getRolesChannel.send(pronounsEmbed)
-		reactionRoleData.filter(e => e.type == "pronouns").forEach(e => await pronounsMessage.react(e.emoji))
+		const pronounsMessage = (await getRolesChannel.send(pronounsEmbed))
+		reactionRoleData.filter(e => e.type == "pronouns").forEach(e => (await pronounsMessage.react(e.emoji)))
 
 		
 	},
