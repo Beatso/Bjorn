@@ -13,7 +13,7 @@ module.exports = {
 
 		const sortedRanks = sortRanks(message.guild)
 
-		const numberToFind = (!isNaN(args[0]) && Number(args[0])>=1 && Number(args[0])<=30) ? Number[args[0]] : 10
+		const numberToFind = (!isNaN(args[0]) && Number(args[0])>=1 && Number(args[0])<=30) ? Number(args[0]) : 10
 
 		const topX = sortedRanks.splice(0, numberToFind)
 		const authorInTopX = topX.some(element => element.id == message.author.id)
