@@ -22,7 +22,7 @@ module.exports = {
 
 		topX.forEach((element, index) => {
 			const member = message.guild.members.cache.get(element.id)
-			description += `**${index+1}**: ${member.nickname ? `${member.nickname} (${member.user.username})` : member.user.username} - ${element.points} points\n`
+			description += `**${index+1}**: ${member.toString()} - ${element.points} points\n`
 		})
 
 		if (!authorInTopX) {
