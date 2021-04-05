@@ -146,7 +146,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 			const embed = {
 				color: 15844367,
 				author: {
-					name: message.member.toString(),
+					name: message.author.tag,
 					icon_url: message.author.avatarURL()
 				},
 				description: message.content,
