@@ -3,7 +3,6 @@ const Discord = require('discord.js')
 const { prefix,channelIDs,defaultCooldown,inPublicVCRoleID,inLockedVCRoleID} = require('./config.json')
 const reactionRoleData = require("./reactionroles.json")
 require("dotenv").config()
-const discordTTS = require("discord-tts")
 const axios = require('axios').default
 
 module.exports.githubtoken=process.env.githubtoken
@@ -195,63 +194,6 @@ client.on("message", message => {
 	) {
 		message.delete().then(message => message.reply("don't send invite links!"))
 	}
-})
-
-// detect when a member joins or leaves a voice channel, and give them the role if applicable
-client.on("voiceStateUpdate", (oldState, newState) => {
-
-	if (oldState.member.user.bot) return
-
-	if (oldState.channelID!=null && newState.channelID==null) {
-		join = false
-		leave = true
-	}
-	else if (oldState.channelID==null && newState.channelID!=null) {
-		join = true
-		leave = false
-	} else if (oldState.channelID!=null && newState.channelID!=null && oldState.channelID!=newState.channelID) {
-		join = true
-		leave = true
-	}
-	else return
-
-	if (leave) {
-			
-		if (
-			newState.guild.me.voice.channelID != null &&
-			newState.guild.me.voice.channel.members.filter(member => !member.user.bot).size < 1
-		) newState.guild.me.voice.channel.leave()
-
-		if (oldState.channelID == '757326822936543332') newState.member.roles.remove(oldState.guild.roles.cache.get(inPublicVCRoleID))	
-		else if (oldState.channelID == '806889275173109770') newState.member.roles.remove(oldState.guild.roles.cache.get(inLockedVCRoleID))
-
-	}
-
-	if (join) {
-		if (newState.channelID == '757326822936543332') newState.member.roles.add(oldState.guild.roles.cache.get(inPublicVCRoleID))	
-		else if (newState.channelID == '806889275173109770') newState.member.roles.add(oldState.guild.roles.cache.get(inLockedVCRoleID))
-	}
-})
-
-client.on('message', async message => {
-
-	if (!message.guild) return
-
-	if (!message.channel.name.startsWith('tts')) return // not in tts text channel 
-
-	if (message.member.voice.channelID != null && message.guild.me.voice.channelID == null) await message.member.voice.channel.join() // join the channel if not already in a channel and the user is in a channel
-	
-	if (
-		message.guild.me.voice.channelID != message.member.voice.channelID || // the bot and member are in different channels
-		message.content.length > 100 || // the message is over 100 chars
-		message.member.voice.channelID == null || // author is not in a vc in this server
-		message.author.bot // author is a bot
-	) return message.react('⚠️') // let the user know it failed
-
-	message.guild.voice.connection.play(discordTTS.getVoiceStream(`${message.member.nickname ? message.member.nickname : message.author.username} says ${message.cleanContent}`)) // play
-
-	message.react('✅') // let the user know it worked
-	
 })
 
 client.login(process.env.discordtoken)
