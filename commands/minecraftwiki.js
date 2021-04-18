@@ -11,8 +11,7 @@ module.exports = {
 	execute(message, args) {
         
         if (args.length!=0) {
-            const query = args.join(" ")
-            request(`https://minecraft.gamepedia.com/Special:Search?fulltext=1&query=${query}`, (searchError, searchResponse, searchBody) => {
+            request(`https://minecraft.gamepedia.com/Special:Search?fulltext=1&query=${encodeURIComponent(args.join(' '))}`, (searchError, searchResponse, searchBody) => {
                 if (searchResponse.statusCode==200 && searchBody) {
                     const x = searchBody.split("unified-search__result__title")[0].split('"')
                     const pageURL = x[x.length-3]
