@@ -1,5 +1,6 @@
 const { color } = require('../config.json');
-const {client} = require("../index.js")
+const { client } = require("../index.js")
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
 	name: 'userinfo',
@@ -22,38 +23,40 @@ module.exports = {
 		const user = client.users.cache.get(id)
 		const member = message.guild.members.cache.get(id)
 
-		const responseEmbed = {
-			"title": `User Info for ${user.tag}`,
-			'author': {
-				'icon_url': user.avatarURL(),
-				'name': user.username
-			},
-			"fields": [
+		const responseEmbed = new Discord.MessageEmbed()
+			.setTitle(`User Info for ${user.tag}`)
+			.setAuthor(user.username, user.displayAvatarURL())
+			.setColor(color)
+			.addFields(
 				{
-					"name": "Joined Discord",
-					"value": user.createdAt.toUTCString()
+					name: 'Joined Discord',
+					value: user.createdAt.toUTCString()
 				},
 				{
-					"name": "Joined Server",
-					"value": member.joinedAt.toUTCString()
+					name: 'Joined Server',
+					value: member.joinedAt.toUTCString()
 				},
 				{
-					"name": "Avatar",
-					"value": `[Link](${user.avatarURL({ "format": "png", "dynamic": "true"})})`
+					name: 'Avatar',
+					value: `[Link](${user.avatarURL({ format: 'png', dynamic: 'true' })})`
 				},
 				{
-					"name": "ID",
-					"value": user.id
+					name: 'ID',
+					value: user.id
 				},
 				{
-					"name": "Nickname",
-					"value": member.nickname == null ? "None" : member.nickname
+					name: 'Nickname',
+					value: member.nickname == null ? 'None' : member.nickname
 				}
-			],
-			"color": color
-		}
+			)
+			.setThumbnail(
+				user.displayAvatarURL({
+					format: 'png',
+					dynamic: 'true'
+				})
+			);
 
-		message.channel.send({embed:responseEmbed})
+		message.channel.send(responseEmbed)
 
     },
 };
