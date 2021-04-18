@@ -1,6 +1,6 @@
 const prettyMilliseconds = require("pretty-ms")
 const { client } = require("../index.js")
-const { color } = require("../config.json")
+const { color, prefix } = require("../config.json")
 
 module.exports = {
     name: 'ping',
@@ -10,7 +10,7 @@ module.exports = {
 	execute(message, args) {
         message.channel.send({embed: {
             color: color,
-            title: "Pong!",
+            title: `${message.content.slice(prefix.length).split(/ +/)[0].toLowerCase() == 'pong' ? 'Ping!' : 'Pong!'}`,
             fields: [
                 {
                     name: "Latency",
