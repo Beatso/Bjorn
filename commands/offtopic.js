@@ -1,4 +1,5 @@
 const {channelIDs} = require("../config.json")
+const { color } = require('../config.json')
 
 module.exports = {
     name: "offtopic",
