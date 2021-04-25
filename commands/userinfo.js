@@ -1,5 +1,5 @@
-const { color } = require('../config.json');
-const { client } = require("../index.js")
+const {color} = require('../config.json');
+const {client} = require("../index.js")
 const { MessageEmbed } = require('discord.js')
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
 	aliases: ["about", "user", "profile"],
 	usage: "<user>",
     description: "Gets info about a particular user.",
-	availableTo: "@everyone",
+	availableTo: "@Members",
 	parameters: "**User**: *optional* the id or @mention of the user you want info about. Defaults to the author if unspecified.",
 	execute(message, args) {
 	
@@ -23,40 +23,32 @@ module.exports = {
 		const user = client.users.cache.get(id)
 		const member = message.guild.members.cache.get(id)
 
-		const responseEmbed = new Discord.MessageEmbed()
-			.setTitle(`User Info for ${user.tag}`)
-			.setAuthor(user.username, user.displayAvatarURL())
-			.setColor(color)
-			.addFields(
+		const responseEmbed = {
+			
+			"title": `User Info for ${user.tag}`,
+			"thumbnail":{url:`${user.displayAvatarURL({ "format": "png", "dynamic": "true"})}`},
+			"fields": [
 				{
-					name: 'Joined Discord',
-					value: user.createdAt.toUTCString()
+					"name": "Joined Discord",
+					"value": user.createdAt.toUTCString()
 				},
 				{
-					name: 'Joined Server',
-					value: member.joinedAt.toUTCString()
+					"name": "Joined Server",
+					"value": member.joinedAt.toUTCString()
 				},
 				{
-					name: 'Avatar',
-					value: `[Link](${user.avatarURL({ format: 'png', dynamic: 'true' })})`
+					"name": "ID",
+					"value": user.id
 				},
 				{
-					name: 'ID',
-					value: user.id
-				},
-				{
-					name: 'Nickname',
-					value: member.nickname == null ? 'None' : member.nickname
+					"name": "Nickname",
+					"value": member.nickname == null ? "None" : member.nickname
 				}
-			)
-			.setThumbnail(
-				user.displayAvatarURL({
-					format: 'png',
-					dynamic: 'true'
-				})
-			);
+			],
+			"color": color
+		}
 
-		message.channel.send(responseEmbed)
+		message.channel.send({embed:responseEmbed})
 
     },
 };
