@@ -133,7 +133,7 @@ client.on("messageReactionAdd", async (reaction, user) => {
 			user.bot // ignore reactions from bots
 		) return 
 
-		if (user.id == message.author.id) reaction.users.remove(message.author) // remove reactions from message author
+		if (user.id == message.author.id) return reaction.users.remove(message.author) // remove reactions from message author
 
 		// add message to starboard
 		if (
