@@ -37,6 +37,12 @@ const tryChat = async message => {
 
 client.on('message', message => {
 	if (message.author.bot) return
+
+	if ( // no commands in #creations
+		message.channel.id==channelIDs.communityCreations &&
+		!message.member.hasPermission('MANAGE_MESSAGES')
+	) return
+
 	if (!message.content.startsWith(prefix)) return tryChat(message)
 
 	const args = message.content.slice(prefix.length).split(/ +/)
