@@ -23,7 +23,7 @@ module.exports = {
 		const user = client.users.cache.get(id)
 		const member = message.guild.members.cache.get(id)
 
-		const responseEmbed = new Discord.MessageEmbed()
+		const responseEmbed = new MessageEmbed()
 			.setTitle(`User Info for ${user.tag}`)
 			.setAuthor(user.username, user.displayAvatarURL())
 			.setColor(color)
