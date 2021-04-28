@@ -10,6 +10,8 @@ module.exports = {
 	cooldown: 3,
 	execute(message, args) {
 
+		if (args[0]=='[server | server-no-ping | dm | none]') return message.channel.send('very funny')
+
 		giveXP(message.member, 0, false)
 
 		const currentPreference = ( client.points.get(message.author.id, "notificationPreference") || "server" ) // default to server if no preference
