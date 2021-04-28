@@ -50,7 +50,7 @@ module.exports = {
 				},
 				{
 					name: 'Roles',
-					value: `${member.roles.cache.array().join(', ')} - role${member.roles.cache.size} ${member.roles.cache.size==1 ? '' : 's'}`
+					value: `${member.roles.cache.array().join(', ')} - ${member.roles.cache.size} role${member.roles.cache.size==1 ? '' : 's'}`
 				}
 			)
 			.setThumbnail(
