@@ -47,6 +47,10 @@ module.exports = {
 				{
 					name: 'Nickname',
 					value: member.nickname == null ? 'None' : member.nickname
+				},
+				{
+					name: 'Roles',
+					value: `${member.roles.cache.array().join(', ')} - role${member.roles.cache.size} ${member.roles.cache.size==1 ? '' : 's'}`
 				}
 			)
 			.setThumbnail(
