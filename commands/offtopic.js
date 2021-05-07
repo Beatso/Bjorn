@@ -7,7 +7,7 @@ module.exports = {
     description: "Sends a message about a conversation being off topic.",
     availableTo: "@everyone",
 	execute(message, args) {
-		if (message.author.id=='738032578820309072') return message.react('❌')
+		if (message.author.id=='634776327299399721') return message.react('❌')
         message.channel.send({ embed: {
 			author: {
 				name: message.member.nickname || message.author.username,
