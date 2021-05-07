@@ -36,6 +36,7 @@ const tryChat = async message => {
 }
 
 client.on('message', message => {
+	if (message.content == 'F') message.react('🇫')
 	if (message.author.bot) return
 
 	if ( // no commands in #creations
