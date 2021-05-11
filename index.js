@@ -202,6 +202,38 @@ client.on("message", message => {
 	}
 })
 
+const deleteMessageLog = message => {
+	message.guild.channels.cache.get('840706855595933718').send(
+		new Discord.MessageEmbed()
+			.setAuthor(message.author.tag, message.author.displayAvatarURL())
+			.setDescription(message.content)
+			.setFooter(message.channel.toString())
+			.setColor(message.guild.me.displayHexColor)
+	)
+}
+
+client.on('messageDelete', message => 
+	deleteMessageLog(message)
+)
+
+client.on('messageDeleteBulk', messages => {
+	messages.each(message => 
+		deleteMessageLog(message)
+	)
+})
+
+client.on('messageUpdate', (oldMessage, newMessage) => {
+	if (oldMessage.content == newMessage.content) return
+	message.guild.channels.cache.get('840706855595933718').send(
+		new Discord.MessageEmbed()
+			.setAuthor(message.author.tag, message.author.displayAvatarURL())
+			.addField('Old Content', oldMessage.content)
+			.addField('New Content', newMessage.content)
+			.setFooter(message.channel.toString())
+			.setColor(message.guild.me.displayHexColor)
+	)
+})
+
 client.login(process.env.discordtoken)
 
 require("./levelling.js")
