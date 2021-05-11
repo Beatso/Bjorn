@@ -209,7 +209,7 @@ const deleteMessageLog = message => {
 			.setAuthor(message.author.tag, message.author.displayAvatarURL())
 			.setDescription(message.content)
 			.setFooter(`#${message.channel.name}`)
-			.setColor(message.guild.me.displayHexColor)
+			.setColor('RED')
 	)
 }
 
@@ -232,7 +232,7 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 			.addField('Old Content', oldMessage.content)
 			.addField('New Content', newMessage.content)
 			.setFooter(`#${newMessage.channel.name}`)
-			.setColor(newMessage.guild.me.displayHexColor)
+			.setColor('YELLOW')
 	)
 })
 
