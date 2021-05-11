@@ -225,7 +225,7 @@ client.on('messageDeleteBulk', messages => {
 
 client.on('messageUpdate', (oldMessage, newMessage) => {
 	if (oldMessage.content == newMessage.content) return
-	message.guild.channels.cache.get('840706855595933718').send(
+	newMessage.guild.channels.cache.get('840706855595933718').send(
 		new Discord.MessageEmbed()
 			.setTitle('Message Edited')
 			.setAuthor(newMessage.author.tag, newMessage.author.displayAvatarURL())
