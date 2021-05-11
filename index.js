@@ -100,7 +100,7 @@ client.on("message", message => {
 	if (message.member.nickname==null) name = message.author.username
 	else name = message.member.nickname
 
-	creationsWebhook.send(message.content, { username: name, avatarURL: message.author.avatarURL({dynamic:true}), allowedMentions: {parse: []} })
+	creationsWebhook.send(message.content, { username: name, avatarURL: message.author.avatarURL({dynamic:true}), disableMentions: "all" })
 
 })
 
