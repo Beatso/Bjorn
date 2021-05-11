@@ -4,18 +4,3 @@ updates:
   directory: "/"
   schedule:
     interval: daily
-    timezone: Europe/London
-  open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: discord.js
-    versions:
-    - 12.5.2
-  - dependency-name: "@octokit/core"
-    versions:
-    - 3.3.1
-  - dependency-name: ffmpeg-static
-    versions:
-    - 4.2.8
-  - dependency-name: opusscript
-    versions:
-    - 0.0.8
