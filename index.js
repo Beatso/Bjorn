@@ -207,7 +207,7 @@ const deleteMessageLog = message => {
 		new Discord.MessageEmbed()
 			.setAuthor(message.author.tag, message.author.displayAvatarURL())
 			.setDescription(message.content)
-			.setFooter(message.channel.toString())
+			.setFooter(`#${message.channel.name}`)
 			.setColor(message.guild.me.displayHexColor)
 	)
 }
@@ -226,11 +226,11 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 	if (oldMessage.content == newMessage.content) return
 	message.guild.channels.cache.get('840706855595933718').send(
 		new Discord.MessageEmbed()
-			.setAuthor(message.author.tag, message.author.displayAvatarURL())
+			.setAuthor(newMessage.author.tag, newMessage.author.displayAvatarURL())
 			.addField('Old Content', oldMessage.content)
 			.addField('New Content', newMessage.content)
-			.setFooter(message.channel.toString())
-			.setColor(message.guild.me.displayHexColor)
+			.setFooter(`#${newMessage.channel.name}`)
+			.setColor(newMessage.guild.me.displayHexColor)
 	)
 })
 
