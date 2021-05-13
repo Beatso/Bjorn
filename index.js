@@ -65,7 +65,7 @@ client.on('message', message => {
 		const expirationTime = timestamps.get(message.author.id) + cooldownAmount
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 1000
-			return message.reply(`you're on cooldown! Please wait ${timeLeft.toFixed(1)} more seconds before using that command again.`)
+			return message.reply(`You're on cooldown! Please wait ${timeLeft.toFixed(1)} more seconds before using that command again.`)
 		}
 	}
 
@@ -78,7 +78,7 @@ client.on('message', message => {
 		command.execute(message, args)
 	} catch (error) {
 		console.error(error)
-		message.reply('there was an error trying to execute that command!')
+		message.reply('There was an error trying to execute that command!')
 	}
 })
 
@@ -95,7 +95,7 @@ client.on("message", message => {
 	) return
 	
 	message.delete()
-	message.reply("your message was deleted because it didn't have an attachment, image or link. Please use <#756241898439704618> for talking about creations posted in this channel.").then(response=>response.delete({timeout:15000}))
+	message.reply("Your message was deleted because it didn't have an attachment, image or link. Please use <#756241898439704618> for talking about creations posted in this channel.").then(response=>response.delete({timeout:15000}))
 
 	if (message.member.nickname==null) name = message.author.username
 	else name = message.member.nickname
