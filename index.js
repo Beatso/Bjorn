@@ -8,7 +8,7 @@ const axios = require('axios').default
 module.exports.githubtoken=process.env.githubtoken
 module.exports.beatsoghtoken=process.env.beatsoghtoken
 
-const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"]})
+const client = new Discord.Client({partials: ["MESSAGE","CHANNEL","REACTION"],disableMentions:"everyone"})
 client.commands = new Discord.Collection()
 module.exports.client = client
 const creationsWebhook = new Discord.WebhookClient(process.env.creationswebhookid,process.env.creationswebhooktoken)
