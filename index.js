@@ -236,6 +236,37 @@ client.on('messageUpdate', (oldMessage, newMessage) => {
 	)
 })
 
+// detect when a member joins or leaves a voice channel, and give them the role if applicable
+client.on("voiceStateUpdate", (oldState, newState) => {
+
+	if (oldState.member.user.bot) return
+
+	if (oldState.channelID!=null && newState.channelID==null) {
+		join = false
+		leave = true
+	}
+	else if (oldState.channelID==null && newState.channelID!=null) {
+		join = true
+		leave = false
+	} else if (oldState.channelID!=null && newState.channelID!=null && oldState.channelID!=newState.channelID) {
+		join = true
+		leave = true
+	}
+	else return
+
+	if (leave) {
+
+		if (oldState.channelID == '757326822936543332') newState.member.roles.remove(oldState.guild.roles.cache.get(inPublicVCRoleID))	
+		else if (oldState.channelID == '806889275173109770') newState.member.roles.remove(oldState.guild.roles.cache.get(inLockedVCRoleID))
+
+	}
+
+	if (join) {
+		if (newState.channelID == '757326822936543332') newState.member.roles.add(oldState.guild.roles.cache.get(inPublicVCRoleID))	
+		else if (newState.channelID == '806889275173109770') newState.member.roles.add(oldState.guild.roles.cache.get(inLockedVCRoleID))
+	}
+})
+
 client.login(process.env.discordtoken)
 
 require("./levelling.js")
