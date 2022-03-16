@@ -43,7 +43,7 @@ client.on('message', message => {
 		!message.member.hasPermission('MANAGE_MESSAGES')
 	) return
 
-	if (!message.content.startsWith(prefix)) return tryChat(message)
+	if (!message.content.startsWith(prefix)) return // tryChat(message)
 
 	const args = message.content.slice(prefix.length).split(/ +/)
 	const commandName = args.shift().toLowerCase()
@@ -51,7 +51,7 @@ client.on('message', message => {
 	const command = client.commands.get(commandName)
 		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 		
-	if (!command) return tryChat(message)
+	if (!command) return // tryChat(message)
 	
 
 
